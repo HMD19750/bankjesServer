@@ -20,3 +20,4 @@ use Illuminate\Http\Request;
 
 
 Route::get('/admin', [StatsController::class, 'index']);
+Route::view('/', 'welcome');
