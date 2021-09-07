@@ -11,6 +11,7 @@
 
 <body>
     <div id="app">
+        
         <map-app/>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

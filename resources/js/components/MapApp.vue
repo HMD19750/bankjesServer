@@ -1,19 +1,20 @@
 <template>
-  <div>Dit is App.vue</div>
+  <div>
+      <map-page></map-page>
+  </div>
 </template>
 
 <script >
-// import { defineComponent } from "vue";
-// import MapPage from "./components/MapPage.vue";
-// import AddMenu from "./components/AddMenu.vue";
-// import { eventHub } from "./app";
+import { defineComponent } from "vue";
+import MapPage from "../components/MapPage.vue";
 
-export default {
-  name: "MapApp",
+
+export default defineComponent({
+ name: "MapApp",
 
   components: {
     // AddMenu,
-    // MapPage,
+    MapPage,
   },
 
   data() {
@@ -26,8 +27,8 @@ export default {
   },
 
     mounted() {
-    // eventHub.on("startAdd", this.startAdd);
-    // eventHub.on("endAdd", this.endAdd);
+    eventHub.on("startAdd", this.startAdd);
+    eventHub.on("endAdd", this.endAdd);
     // eventHub.on("startDelete", this.startDelete);
     // eventHub.on("endDelete", this.endDelete);
     // eventHub.on("startConfirm", this.startConfirm);
@@ -35,9 +36,17 @@ export default {
   },
 
   methods: {
+          startAdd() {
+      // console.log("App.vue: Hit eventhandler voor startAdd");
+      this.showAddOverlay = true;
+      this.showDeleteOverlay = false;
+    },
 
+        endAdd() {
+      // console.log("App.vue: Hit eventhandler voor endAdd");
+      this.showAddOverlay = false;
+    },
 
   }
-
-};
+});
 </script>
