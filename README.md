@@ -8,3 +8,7 @@
 - Kaart is zichtbaar
 - Markers worden geod geplaatst
 - Kaart wordt ververst bij scroll en pan
+
+## 8-9-2021
+- Menu werkt
+- Font awesome is werkend

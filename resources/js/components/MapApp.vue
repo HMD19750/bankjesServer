@@ -7,7 +7,7 @@
 <script >
 import { defineComponent } from "vue";
 import MapPage from "../components/MapPage.vue";
-
+import { eventHub } from "../app";
 
 export default defineComponent({
  name: "MapApp",

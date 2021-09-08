@@ -1,5 +1,6 @@
 <template>
   <div id="myMap" style="width: 100%; height: 100%"></div>
+  <menu-button/>
 </template>
 
 <script >
@@ -7,13 +8,14 @@ import { defineComponent } from "vue";
 import L from "leaflet";
 import icons from "../mixins/icons.js";
 import { eventHub } from "../app";
+import MenuButton from "./MenuButton.vue";
 
 const axios = require("axios");
 
 export default defineComponent({
   name: "MapPage",
 
-  components: {},
+  components: {MenuButton},
 
   mixins: [icons],
 
@@ -25,7 +27,7 @@ export default defineComponent({
       map: null,
       tileLayer: null,
       layers: [],
-      zoom: 14,
+      zoom: 15,
       centerMap: [51, 6],
       userPosition: [51, 6],
       userPositionIcon: null,
@@ -165,7 +167,7 @@ export default defineComponent({
     },
 
     reCenter() {
-      this.map.flyTo(this.userPosition, 15);
+      this.map.flyTo(this.userPosition, this.zoom);
     },
 
     CurrentLocationFound(pos) {
