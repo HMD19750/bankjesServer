@@ -9,7 +9,7 @@
     <button class="MenuButton" href="#">
       <i class="menuIcon fas fa-minus"></i>
     </button>
-    <button class="MenuButton" href="#">
+    <button class="MenuButton" href="#" @click="showDocumentation">
       <i class="menuIcon fas fa-info"></i>
     </button>
   </div>
@@ -46,6 +46,11 @@ export default {
       console.log("Menubar.vue: Emitted startAdd");
       eventHub.emit("startAdd");
     },
+
+    showDocumentation() {
+    console.log("Menubar.vue: Emitted showDocumentation");
+      eventHub.emit("showDocumentation");
+    }
   },
 };
 </script>
@@ -69,8 +74,11 @@ export default {
   margin-top: 10px;
   border: none;
   color: white;
+  transition-duration: 0.4s;
 }
 .MenuButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
 }
 
 .menuItem {

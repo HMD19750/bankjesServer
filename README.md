@@ -12,3 +12,7 @@
 ## 8-9-2021
 - Menu werkt
 - Font awesome is werkend
+
+## 9-9-2021
+- I-modal werkt
+- menuknoppen hebben hoover-effect
