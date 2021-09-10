@@ -1,38 +1,40 @@
 <template>
-  <div class="menu">
+  <div  class="menu">
     <button class="MenuButton" href="#" @click="reCenter">
-       <i class="menuIcon fas fa-location-arrow"></i>
+      <i class="menuIcon fas fa-location-arrow"></i>
     </button>
     <button class="MenuButton" href="#" @click="startAdd">
       <i class="menuIcon fas fa-plus"></i>
     </button>
-    <button class="MenuButton" href="#">
+    <button class="MenuButton" href="#" @click="startDelete">
       <i class="menuIcon fas fa-minus"></i>
     </button>
     <button class="MenuButton" href="#" @click="showDocumentation">
       <i class="menuIcon fas fa-info"></i>
     </button>
+
+    <b-badge pill variant="primary">Primary</b-badge>
   </div>
 </template>
 
 <script>
-
 import { eventHub } from "../app";
 
 export default {
+
   mounted() {
     console.log("MenuButton started");
   },
-  components: {
 
-  },
+  components: {},
 
   data() {
     return {
-    //   locationArrow: faLocationArrow,
-    //   plus: faPlus,
-    //   minus: faMinus,
-    //   info: faInfo,
+
+      //   locationArrow: faLocationArrow,
+      //   plus: faPlus,
+      //   minus: faMinus,
+      //   info: faInfo,
     };
   },
 
@@ -47,10 +49,15 @@ export default {
       eventHub.emit("startAdd");
     },
 
+        startDelete() {
+      console.log("Menubar.vue: Emitted startDelete");
+      eventHub.emit("startDelete");
+    },
+
     showDocumentation() {
-    console.log("Menubar.vue: Emitted showDocumentation");
+      console.log("Menubar.vue: Emitted showDocumentation");
       eventHub.emit("showDocumentation");
-    }
+    },
   },
 };
 </script>
@@ -77,7 +84,7 @@ export default {
   transition-duration: 0.4s;
 }
 .MenuButton:hover {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   color: white;
 }
 

@@ -16,3 +16,8 @@
 ## 9-9-2021
 - I-modal werkt
 - menuknoppen hebben hoover-effect
+
+## 10-9-2021
+- addBankje en deleteBankje werken
+- in MapApp een constante toegevogd voor de API Base URL
+- 
