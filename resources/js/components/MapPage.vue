@@ -52,6 +52,7 @@ export default defineComponent({
   methods: {
     InitAtMounted() {
       this.centerMap = this.userPosition;
+      console.log(this.userPosition);
       this.map = this.initMap();
       this.getBankjes();
       setTimeout(this.createEventHandlers(), 1000);

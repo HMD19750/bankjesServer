@@ -1,4 +1,7 @@
 # testBankjes
+
+Een project om vanuit de BankjesServer met alleen een API interface ook een Vue applicatie toe te voegen die hetzelfde is als de Wandelbankjes-app.
+
 ## 5-9-2021
 - Vanuit Github bankjesServer gedownload
 - Aangevuld met Laravel 
@@ -19,5 +22,7 @@
 
 ## 10-9-2021
 - addBankje en deleteBankje werken
-- in MapApp een constante toegevogd voor de API Base URL
-- 
+- in MapApp een constante toegevoegd voor de API Base URL
+  
+## 11-9-2021
+- Flash messages van add en delete menus ondergebracht in aparte componentn Flash.vue

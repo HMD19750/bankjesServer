@@ -1,7 +1,9 @@
-<template >
-  <transition name="fade">
-    <div class="flash" v-show="elementVisible">Zelf een bankje toevoegen</div>
-  </transition>
+<template>
+<div>
+  <flash>
+      Zelf een bankje toevoegen
+  </flash>
+
   <div class="centercross front">
     <svg height="150" width="150">
       <line
@@ -165,21 +167,18 @@
       />
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import { eventHub } from "../app";
+import flash from "./Flash.vue";
+
 
 export default {
-  data() {
-    return {
-      elementVisible: true,
-    };
-  },
 
-  created() {
-    setTimeout(() => (this.elementVisible = false), 2000);
-  },
+  components: { flash },
+
 
   mounted() {
     console.log("Addmenu mounted");
@@ -215,21 +214,6 @@ export default {
 <style scoped>
 .front {
   z-index: 2222;
-}
-
-.flash {
-  color: whitesmoke;
-  display: block;
-  border-radius: 10px;
-  z-index: 9999;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  background-color: black;
-  padding: 10px;
-  opacity: 0.5;
-  text-align: center;
 }
 
 .centercross {
@@ -272,13 +256,5 @@ export default {
   transform: scale(0.5, 0.5) translate(-0px, -180px);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>

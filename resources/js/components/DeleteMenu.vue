@@ -1,7 +1,7 @@
 <template>
-<transition name="fade">
-  <div class="flash" v-show="elementVisible">Zelf een bankje verwijderen</div>
-</transition>
+  <flash>
+      Zelf een bankje verwijderen
+  </flash>
   <div class="centermenu front"  >
          <svg height="150" width="150">
         <line
@@ -103,18 +103,12 @@
 
 <script>
 import { eventHub } from "../app";
-
+import flash from "./Flash.vue";
 
 export default {
-    data() {
-      return {
-          elementVisible: true
-      }
-  },
+     components: { flash },
 
-  created() {
-      setTimeout(() => this.elementVisible = false, 2000)
-  },
+
 
   methods: {
     deleteBankje() {
@@ -136,20 +130,6 @@ export default {
     z-index:2222;
 }
 
-.flash {
-  color: whitesmoke;
-  display: block;
-  border-radius: 10px;
-  z-index: 9999;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  background-color: black;
-  padding: 10px;
-  opacity: 0.5;
-  text-align: center;
-}
 
 .centermenu {
   position: absolute;
@@ -171,14 +151,5 @@ export default {
   transform: scale(0.3, 0.3) translate(-150px, -25px);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
 
 </style>

@@ -40,7 +40,7 @@
                   height="27"
                 />
               </td>
-              <td >Bankje</td>
+              <td>Bankje</td>
             </tr>
             <tr>
               <td>
@@ -50,7 +50,7 @@
                   height="27"
                 />
               </td>
-              <td >Picnicbank</td>
+              <td>Picnicbank</td>
             </tr>
 
             <tr>
@@ -61,7 +61,7 @@
                   height="27"
                 />
               </td>
-              <td >Schuilhut</td>
+              <td>Schuilhut</td>
             </tr>
           </table>
 
@@ -85,6 +85,13 @@
             schuilhutten in Nederland en Belgie.
           </p>
 
+          <h1>App voor Android</h1>
+          <p>
+            Voor Android is er een speciale app met dezelfde functionaliteit als
+            deze website. Je vind hem in de Google Playstore onder de naam "
+            Wandelbankjes"
+          </p>
+
           <h1>Feedback</h1>
           <p>
             Ondervind u problemen? Of heeft u suggesties? Stuur dan een email
@@ -93,9 +100,7 @@
           </p>
 
           <div style="text-align: center">
-            <button type="button"  @click="closeModal">
-              Ga terug
-            </button>
+            <button type="button" @click="closeModal">Ga terug</button>
             <p>U aangeboden door</p>
             <a href="https://www.deijsmannetjes.nl">
               <img src="../assets/images/ijsmannetjesbanner.png" width="150" />
@@ -127,6 +132,7 @@ export default defineComponent({
 p,
 td {
   font-size: 0.75em;
+  margin-top:2px;
 }
 
 button {
@@ -159,6 +165,7 @@ button:hover {
 h1 {
   font-size: medium;
   font-weight: bold;
+  margin-bottom: 2px;
 }
 
 .modal-mask {

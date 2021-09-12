@@ -1,7 +1,5 @@
 import { createApp } from 'vue'
-import HelloWorld from './components/HelloWorld.vue';
 import MapApp from './components/MapApp.vue'
-
 
 
 import 'leaflet/dist/leaflet.css'

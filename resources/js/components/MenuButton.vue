@@ -13,7 +13,7 @@
       <i class="menuIcon fas fa-info"></i>
     </button>
 
-    <b-badge pill variant="primary">Primary</b-badge>
+    
   </div>
 </template>
 
