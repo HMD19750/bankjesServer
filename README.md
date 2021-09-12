@@ -25,4 +25,7 @@ Een project om vanuit de BankjesServer met alleen een API interface ook een Vue 
 - in MapApp een constante toegevoegd voor de API Base URL
   
 ## 11-9-2021
-- Flash messages van add en delete menus ondergebracht in aparte componentn Flash.vue
+- Flash messages van add en delete menus ondergebracht in aparte component Flash.vue
+
+## Versie 1.0.0
+Project op nieuwe branch "withVue" gezet van "bankjesServer"
