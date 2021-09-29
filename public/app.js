@@ -29631,7 +29631,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       userPosition: [51, 6],
       userPositionIcon: null,
       aantalBankjes: 0,
-      baseUrl: 'https://www.evenuitrusten.nl'
+      baseUrl: 'http://localhost:8000'
     };
   },
   created: function created() {
@@ -64161,7 +64161,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.3","description":"P
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
+/******/ 			"/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		

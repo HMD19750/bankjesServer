@@ -29,3 +29,7 @@ Een project om vanuit de BankjesServer met alleen een API interface ook een Vue 
 
 ## Versie 1.0.0
 Project op nieuwe branch "withVue" gezet van "bankjesServer"
+
+## Versie 1.1.0
+- Hele project 1 niveau naar boven gebracht naar evenuitrusten.nl
+- symbolic link van public_html naar public

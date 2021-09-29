@@ -29,7 +29,7 @@ export default defineComponent({
       userPosition: [51, 6],
       userPositionIcon: null,
       aantalBankjes: 0,
-      baseUrl:'http://localhost:8000'
+      baseUrl:'https://www.evenuitrusten.nl'
     };
   },
 

@@ -1,3 +1,3 @@
 export default {
-    API_URL: 'localhost:8000'
+    API_URL: 'https://www.evenuitrusten.nl'
 }
