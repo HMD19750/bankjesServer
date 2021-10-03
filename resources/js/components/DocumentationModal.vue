@@ -77,7 +77,8 @@
             beperkt aantal bankjes zien. Als u inzoomt kunnen er dus nieuwe
             bankjes verschijnen. Het aantal zichtbare bankjes wordt rechtsonder
             op het scherm getoond.
-          </p>
+               </p>
+
 
           <h1>Gebied</h1>
           <p>
@@ -121,7 +122,7 @@ export default defineComponent({
 
   methods: {
     closeModal() {
-      console.log("Menubar.vue: Emitted closeDocumentation");
+      console.log("Menubar.vue: Emitted closeDocumentation-");
       eventHub.emit("closeDocumentation");
     },
   },
@@ -151,7 +152,7 @@ button:hover {
 }
 
 .no-scroll {
-  --overflow: hidden;
+  --overflow: scroll;
 }
 
 .justify-content-center {
@@ -177,6 +178,7 @@ h1 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
+  
 }
 
 .modal-wrapper {
@@ -192,6 +194,7 @@ h1 {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   font-family: Helvetica, Arial, sans-serif;
+  overflow-y: scroll;
 }
 
 .modal-header h3 {

@@ -29464,7 +29464,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "DocumentationModal",
   methods: {
     closeModal: function closeModal() {
-      console.log("Menubar.vue: Emitted closeDocumentation");
+      console.log("Menubar.vue: Emitted closeDocumentation-");
       _app_js__WEBPACK_IMPORTED_MODULE_1__.eventHub.emit("closeDocumentation");
     }
   }
@@ -29820,7 +29820,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       // console.log(this.zoekGebied());
       var bankjesFound = this.bankjes.filter(this.inZoekGebied);
 
-      if (bankjesFound.length == 1) {
+      if (bankjesFound.length >= 1) {
         console.log("Een gevonden");
         axios["delete"](this.baseUrl + "/api/bankje/" + bankjesFound[0].id)["catch"](function (error) {
           console.log("Error in FrontPage-deleteBankje:" + error);
@@ -29877,7 +29877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log("MenuButton started");
+    console.log("MenuButton started++++");
   },
   components: {},
   data: function data() {
@@ -30511,10 +30511,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20 ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30524,9 +30524,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-3c92cc20");
-
 var _hoisted_1 = {
   id: "myMap",
   style: {
@@ -30534,9 +30531,6 @@ var _hoisted_1 = {
     "height": "100%"
   }
 };
-
-(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1);
 }
@@ -30761,13 +30755,17 @@ __webpack_require__.r(__webpack_exports__);
         shadowAnchor: [0, 32]
       });
     },
+    // centerIcon() {
+    //     return L.icon({
+    //         iconUrl: MapsCenterIcon,
+    //         iconSize: [40, 40], // size of the icon
+    //         iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
+    //         className: 'user-location-icon'  // Om hem te stylen
+    //     });
+    // },
     centerIcon: function centerIcon() {
-      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().icon({
-        iconUrl: _assets_images_MapsCenterIcon_png__WEBPACK_IMPORTED_MODULE_4__["default"],
-        iconSize: [40, 40],
-        // size of the icon
-        iconAnchor: [20, 20] // point of the icon which will correspond to marker's location
-
+      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().divIcon({
+        className: 'pulsating-circle'
       });
     }
   }
@@ -30876,7 +30874,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-c5c11784],\ntd[data-v-c5c11784] {\n  font-size: 0.75em;\n  margin-top:2px;\n}\nbutton[data-v-c5c11784] {\n  border-radius: 10px;\n  background-color: #3dc2ff;\n  outline: none;\n  padding: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\nbutton[data-v-c5c11784]:hover {\n  background-color: #42b983; /* Green */\n  color: white;\n}\n.no-scroll[data-v-c5c11784] {\n  --overflow: hidden;\n}\n.justify-content-center[data-v-c5c11784] {\n  text-align: center;\n}\n.blue[data-v-c5c11784] {\n  --background: #def0c7;\n}\nh1[data-v-c5c11784] {\n  font-size: medium;\n  font-weight: bold;\n  margin-bottom: 2px;\n}\n.modal-mask[data-v-c5c11784] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n}\n.modal-wrapper[data-v-c5c11784] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-c5c11784] {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-c5c11784] {\n  margin-top: 0;\n  color: #42b983;\n  font-weight: bold;\n}\n.modal-body[data-v-c5c11784] {\n  margin: 20px 0;\n}\n.modal-default-button[data-v-c5c11784] {\n  display: block;\n  margin-top: 1rem;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-active[data-v-c5c11784],\n.modal-leave-active[data-v-c5c11784] {\n  transition: opacity 0.5s ease;\n}\n.modal-enter-from[data-v-c5c11784],\n.modal-leave-to[data-v-c5c11784] {\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-c5c11784],\ntd[data-v-c5c11784] {\n  font-size: 0.75em;\n  margin-top:2px;\n}\nbutton[data-v-c5c11784] {\n  border-radius: 10px;\n  background-color: #3dc2ff;\n  outline: none;\n  padding: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\nbutton[data-v-c5c11784]:hover {\n  background-color: #42b983; /* Green */\n  color: white;\n}\n.no-scroll[data-v-c5c11784] {\n  --overflow: scroll;\n}\n.justify-content-center[data-v-c5c11784] {\n  text-align: center;\n}\n.blue[data-v-c5c11784] {\n  --background: #def0c7;\n}\nh1[data-v-c5c11784] {\n  font-size: medium;\n  font-weight: bold;\n  margin-bottom: 2px;\n}\n.modal-mask[data-v-c5c11784] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n}\n.modal-wrapper[data-v-c5c11784] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-c5c11784] {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  font-family: Helvetica, Arial, sans-serif;\n  overflow-y: scroll;\n}\n.modal-header h3[data-v-c5c11784] {\n  margin-top: 0;\n  color: #42b983;\n  font-weight: bold;\n}\n.modal-body[data-v-c5c11784] {\n  margin: 20px 0;\n}\n.modal-default-button[data-v-c5c11784] {\n  display: block;\n  margin-top: 1rem;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-active[data-v-c5c11784],\n.modal-leave-active[data-v-c5c11784] {\n  transition: opacity 0.5s ease;\n}\n.modal-enter-from[data-v-c5c11784],\n.modal-leave-to[data-v-c5c11784] {\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30907,10 +30905,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.flash[data-v-e4161ed6] {\n  color: 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30924,7 +30922,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll[data-v-3c92cc20] {\n  --overflow: hidden;\n}\n#myMap[data-v-3c92cc20] {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll {\n  --overflow: hidden;\n}\n#myMap {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.pulsating-circle {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  width: 30px;\n  height: 30px;\n}\n.pulsating-circle:before {\n  content: \"\";\n  position: relative;\n  display: block;\n  width: 300%;\n  height: 300%;\n  box-sizing: border-box;\n  margin-left: -100%;\n  margin-top: -100%;\n  border-radius: 45px;\n  background-color: red;\n  -webkit-animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n          animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n}\n.pulsating-circle:after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  border-radius: 15px;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  -webkit-animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n          animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n}\n@-webkit-keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%, 100% {\n    opacity: 0;\n}\n}\n@keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%, 100% {\n    opacity: 0;\n}\n}\n@-webkit-keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n@keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30948,7 +30946,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.menu[data-v-90641cc8] {\n  display: flex;\n  flex-direction: column;\n  position: absolute;\n  z-index: 9999;\n  top: 5%;\n  right: 5%;\n}\n.MenuButton[data-v-90641cc8] {\n  width: 40px;\n  height: 40px;\n  border-radius: 100%;\n  background-color: #3dc2ff;\n  outline: none;\n  margin-top: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\n.MenuButton[data-v-90641cc8]:hover {\n  background-color: #4caf50; /* Green */\n  color: white;\n}\n.menuItem[data-v-90641cc8] {\n  color: white;\n  background-color: white;\n  fill: white;\n}\n.btn[data-v-90641cc8] {\n  background-color: DodgerBlue; /* Blue background */\n  border: none; /* Remove borders */\n  color: white; /* White text */\n  padding: 12px 16px; /* Some padding */\n  font-size: 16px; /* Set a font size */\n  cursor: pointer; /* Mouse pointer on hover */\n}\n\n/* Darker background on mouse-over */\n.btn[data-v-90641cc8]:hover {\n  background-color: RoyalBlue;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.menu[data-v-90641cc8] {\n  display: flex;\n  flex-direction: column;\n  position: absolute;\n  z-index: 9999;\n  top: 0%;\n  right: 5%;\n}\n.MenuButton[data-v-90641cc8] {\n  width: 40px;\n  height: 40px;\n  border-radius: 100%;\n  background-color: #3dc2ff;\n  outline: none;\n  margin-top: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\n.MenuButton[data-v-90641cc8]:hover {\n  background-color: #4caf50; /* Green */\n  color: white;\n}\n.menuItem[data-v-90641cc8] {\n  color: white;\n  background-color: white;\n  fill: white;\n}\n.btn[data-v-90641cc8] {\n  background-color: DodgerBlue; /* Blue background */\n  border: none; /* Remove borders */\n  color: white; /* White text */\n  padding: 12px 16px; /* Some padding */\n  font-size: 16px; /* Set a font size */\n  cursor: pointer; /* Mouse pointer on hover */\n}\n\n/* Darker background on mouse-over */\n.btn[data-v-90641cc8]:hover {\n  background-color: RoyalBlue;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -62925,10 +62923,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -62938,7 +62936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css");
 
             
 
@@ -62947,11 +62945,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -63421,16 +63419,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _MapPage_vue_vue_type_template_id_3c92cc20_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapPage.vue?vue&type=template&id=3c92cc20&scoped=true */ "./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true");
+/* harmony import */ var _MapPage_vue_vue_type_template_id_3c92cc20__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapPage.vue?vue&type=template&id=3c92cc20 */ "./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20");
 /* harmony import */ var _MapPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MapPage.vue?vue&type=script&lang=js */ "./resources/js/components/MapPage.vue?vue&type=script&lang=js");
-/* harmony import */ var _MapPage_vue_vue_type_style_index_0_id_3c92cc20_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css */ "./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css");
+/* harmony import */ var _MapPage_vue_vue_type_style_index_0_id_3c92cc20_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css */ "./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css");
 
 
 
 
 ;
-_MapPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _MapPage_vue_vue_type_template_id_3c92cc20_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render
-_MapPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].__scopeId = "data-v-3c92cc20"
+_MapPage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].render = _MapPage_vue_vue_type_template_id_3c92cc20__WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -63662,18 +63659,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true ***!
-  \***************************************************************************************/
+/***/ "./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20 ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_template_id_3c92cc20_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_template_id_3c92cc20__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_template_id_3c92cc20_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=template&id=3c92cc20&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20&scoped=true");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_template_id_3c92cc20__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=template&id=3c92cc20 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=template&id=3c92cc20");
 
 
 /***/ }),
@@ -63746,15 +63743,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css ***!
-  \*****************************************************************************************************/
+/***/ "./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css ***!
+  \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&scoped=true&lang=css");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MapPage_vue_vue_type_style_index_0_id_3c92cc20_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MapPage.vue?vue&type=style&index=0&id=3c92cc20&lang=css");
 
 
 /***/ }),

@@ -47,12 +47,18 @@ export default {
         },
 
 
+        // centerIcon() {
+        //     return L.icon({
+        //         iconUrl: MapsCenterIcon,
+        //         iconSize: [40, 40], // size of the icon
+        //         iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
+        //         className: 'user-location-icon'  // Om hem te stylen
+        //     });
+        // },
+
         centerIcon() {
-            return L.icon({
-                iconUrl: MapsCenterIcon,
-                iconSize: [40, 40], // size of the icon
-                iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
-            });
-        },
+            return L.divIcon({ className: 'pulsating-circle' })
+        }
+
     },
 };

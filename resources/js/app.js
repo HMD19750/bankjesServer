@@ -24,3 +24,5 @@ app.component('map-app', MapApp)
 app.component('font-awesome-icon', FontAwesomeIcon);
 
 require('./bootstrap');
+
+

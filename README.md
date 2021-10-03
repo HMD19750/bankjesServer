@@ -33,3 +33,10 @@ Project op nieuwe branch "withVue" gezet van "bankjesServer"
 ## Versie 1.1.0
 - Hele project 1 niveau naar boven gebracht naar evenuitrusten.nl
 - symbolic link van public_html naar public
+
+## Versie 1.1.1
+- Link toegevoegd aan maps.blade.php met icon voor Apple homescreen
+- meta-tags toegevoegd
+- user location een pulsating dot gemaakt
+- bug in delete bankje gefixed. Als er nu meer dan 1 bankje in zoekgebied zitten wordt de eerste gedelete. Voorheen werd niets gedelete.
+

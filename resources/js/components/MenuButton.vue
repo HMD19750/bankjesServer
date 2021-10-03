@@ -23,7 +23,7 @@ import { eventHub } from "../app";
 export default {
 
   mounted() {
-    console.log("MenuButton started");
+    console.log("MenuButton started++++");
   },
 
   components: {},
@@ -68,7 +68,7 @@ export default {
   flex-direction: column;
   position: absolute;
   z-index: 9999;
-  top: 5%;
+  top: 0%;
   right: 5%;
 }
 
