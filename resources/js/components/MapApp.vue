@@ -52,29 +52,29 @@ export default defineComponent({
 
   methods: {
     startAdd() {
-      console.log("MapApp: Hit eventhandler voor startAdd");
+      // console.log("MapApp: Hit eventhandler voor startAdd");
       this.showAddOverlay = true;
       this.showDeleteOverlay = false;
     },
 
     endAdd() {
-      console.log("MapApp: Hit eventhandler voor endAdd");
+      // console.log("MapApp: Hit eventhandler voor endAdd");
       this.showAddOverlay = false;
     },
 
         startDelete() {
-      console.log("MapApp.vue: Hit eventhandler voor startDelete");
+      // console.log("MapApp.vue: Hit eventhandler voor startDelete");
       this.showDeleteOverlay = true;
       this.showAddOverlay = false;
     },
 
     endDelete() {
-      console.log("MapApp.vue: Hit eventhandler voor EndDelete");
+      // console.log("MapApp.vue: Hit eventhandler voor EndDelete");
       this.showDeleteOverlay = false;
     },
 
     openModal() {
-    //   console.log("MapApp.vue: openModal hit");
+      // console.log("MapApp.vue: openModal hit");
       this.showModal = true;
       this.showMenu=false;
       this.showAddOverlay = false;

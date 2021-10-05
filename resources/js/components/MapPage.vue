@@ -2,12 +2,11 @@
   <div id="myMap" style="width: 100%; height: 100%"></div>
 </template>
 
-<script >
+<script>
 import { defineComponent } from "vue";
 import L from "leaflet";
 import icons from "../mixins/icons.js";
 import { eventHub } from "../app";
-
 
 const axios = require("axios");
 
@@ -25,11 +24,12 @@ export default defineComponent({
       tileLayer: null,
       layers: [],
       zoom: 15,
-      centerMap: [51, 6],
-      userPosition: [51, 6],
+      centerMap: [52.09, 5.12],
+      userPosition: [52.09, 5.12],
+      userPositionOld: [51, 6],
       userPositionIcon: null,
       aantalBankjes: 0,
-      baseUrl:'https://www.evenuitrusten.nl'
+      baseUrl: "https://www.evenuitrusten.nl",
     };
   },
 
@@ -41,11 +41,10 @@ export default defineComponent({
   },
 
   mounted() {
-    var options = { enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(
-      this.CurrentLocationFound,
-      this.CurrentLocationNotFound,
-      options
+      this.initialLocationFound,
+      this.initialLocationNotFound,
+      { enableHighAccuracy: true }
     );
   },
 
@@ -57,10 +56,15 @@ export default defineComponent({
       this.getBankjes();
       setTimeout(this.createEventHandlers(), 1000);
       this.touchServer();
+    },
 
-      this.userPositionIcon = L.marker(this.userPosition, {
-        icon: this.centerIcon,
-      }).addTo(this.map);
+    drawUserPosition() {
+      const threshold=0.0003;    //Corresponds to 30 meter
+      var currentPos=this.userPositionIcon.getLatLng();
+      var d=Math.sqrt((currentPos.lat-this.userPosition[0])**2+(currentPos.lng-this.userPosition[1])**2);
+      if(d>threshold){
+            this.userPositionIcon.setLatLng(this.userPosition); //Only redraw if location changed more than threshold
+      }      
     },
 
     createEventHandlers() {
@@ -75,10 +79,10 @@ export default defineComponent({
       eventHub.on("reCenter", this.reCenter);
     },
 
-        // Touching the server for log purposes
+    // Touching the server for log purposes
     touchServer() {
       axios
-        .post(this.baseUrl+"/api/bankje/touch", {
+        .post(this.baseUrl + "/api/bankje/touch", {
           lat: this.userPosition[0],
           lng: this.userPosition[1],
         })
@@ -136,8 +140,9 @@ export default defineComponent({
     getBankjes() {
       let vertices = this.calculateRetrievalArea(this.map.getCenter());
       axios
-        .get(this.baseUrl+
-          "/api/area?lngLow=" +
+        .get(
+          this.baseUrl +
+            "/api/area?lngLow=" +
             vertices.lngLow +
             "&lngHigh=" +
             vertices.lngHigh +
@@ -150,7 +155,7 @@ export default defineComponent({
         // .get("https://www.evenuitrusten.nl/api/area/test")
         .then((response) => {
           this.bankjes = response.data;
-          console.log("Bankjes: axios has returned data");
+          // console.log("Bankjes: axios has returned data");
           this.placeMarkers(this.bankjes);
           this.aantalBankjes = this.bankjes.length;
           return this.bankjes;
@@ -194,17 +199,49 @@ export default defineComponent({
         pos.coords.latitude,
         pos.coords.longitude
       );
-      this.InitAtMounted();
+      this.drawUserPosition();
     },
 
     CurrentLocationNotFound(err) {
       console.log("CurrentLocationNotFound hit");
-      console.log("getLocation returned " + err);
+      // console.log("getLocation returned " + err);
       this.userPosition = this.toLatLng(51.430207, 5.982087);
-      this.InitAtMounted();
+      // this.InitAtMounted();
+      this.drawUserPosition();
+      this.userPositionOld = this.userPosition;
     },
 
-   addObject(object) {
+    initialLocationFound(pos) {
+      console.log("initialLocationFound hit");
+
+      this.userPosition = this.toLatLng(
+        pos.coords.latitude,
+        pos.coords.longitude
+      );
+
+      this.InitAtMounted();
+
+      this.userPositionIcon = L.marker(this.userPosition, {
+        icon: this.centerIcon,
+      }).addTo(this.map);
+
+      setInterval(()=>navigator.geolocation.getCurrentPosition(
+          this.CurrentLocationFound,
+          this.CurrentLocationNotFound,
+          { enableHighAccuracy: true }
+      )),2000);
+    },
+
+    initialLocationNotFound(err) {
+      console.log("initialLocationNotFound hit");
+      this.InitAtMounted();
+
+      this.userPosition = this.toLatLng(51.430207, 5.982087);
+
+      this.drawUserPosition();
+    },
+
+    addObject(object) {
       const objectProperties = {
         bankje: {
           naam: "bankje",
@@ -227,7 +264,7 @@ export default defineComponent({
       };
 
       axios
-        .post(this.baseUrl+"/api/bankje", bankje)
+        .post(this.baseUrl + "/api/bankje", bankje)
         .then((response) => {
           // console.log("Bankje added to server");
           this.bankjes.push(response.data);
@@ -241,16 +278,14 @@ export default defineComponent({
         });
     },
 
-       // Verwijder het bankje dat voldoende dicht bij het centrum staat
+    // Verwijder het bankje dat voldoende dicht bij het centrum staat
     deleteBankje() {
       // console.log(this.zoekGebied());
       let bankjesFound = this.bankjes.filter(this.inZoekGebied);
       if (bankjesFound.length >= 1) {
         console.log("Een gevonden");
         axios
-          .delete(this.baseUrl+
-            "/api/bankje/" + bankjesFound[0].id
-          )
+          .delete(this.baseUrl + "/api/bankje/" + bankjesFound[0].id)
           .catch(function (error) {
             console.log("Error in FrontPage-deleteBankje:" + error);
           });
@@ -286,7 +321,7 @@ export default defineComponent({
       }
     },
 
-        straalZoekGebied() {
+    straalZoekGebied() {
       return Math.pow(2, 16 - this.map.getZoom()) * 40; //Straal zoekgebied gaat mee met zoom factor
     },
 
@@ -298,7 +333,7 @@ export default defineComponent({
 });
 </script>
 
-<style >
+<style>
 .no-scroll {
   --overflow: hidden;
 }
@@ -310,7 +345,6 @@ export default defineComponent({
   top: 0;
   left: 0;
 }
-
 
 .pulsating-circle {
   position: absolute;
@@ -332,8 +366,9 @@ export default defineComponent({
   margin-top: -100%;
   border-radius: 45px;
   background-color: red;
-  -webkit-animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-          animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  -webkit-animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1)
+    infinite;
+  animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
 .pulsating-circle:after {
@@ -347,24 +382,27 @@ export default defineComponent({
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  -webkit-animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
-          animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+  -webkit-animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s
+    infinite;
+  animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
 }
 
 @-webkit-keyframes pulse-ring {
   0% {
     transform: scale(0.33);
   }
-  80%, 100% {
+  80%,
+  100% {
     opacity: 0;
   }
 }
- 
+
 @keyframes pulse-ring {
   0% {
     transform: scale(0.33);
   }
-  80%, 100% {
+  80%,
+  100% {
     opacity: 0;
   }
 }

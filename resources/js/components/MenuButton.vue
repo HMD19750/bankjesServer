@@ -23,7 +23,7 @@ import { eventHub } from "../app";
 export default {
 
   mounted() {
-    console.log("MenuButton started++++");
+    // console.log("MenuButton started++++");
   },
 
   components: {},
@@ -40,22 +40,22 @@ export default {
 
   methods: {
     reCenter() {
-      console.log("Emitted reCenter");
+      // console.log("Emitted reCenter");
       eventHub.emit("reCenter");
     },
 
     startAdd() {
-      console.log("Menubar.vue: Emitted startAdd");
+      // console.log("Menubar.vue: Emitted startAdd");
       eventHub.emit("startAdd");
     },
 
         startDelete() {
-      console.log("Menubar.vue: Emitted startDelete");
+      // console.log("Menubar.vue: Emitted startDelete");
       eventHub.emit("startDelete");
     },
 
     showDocumentation() {
-      console.log("Menubar.vue: Emitted showDocumentation");
+      // console.log("Menubar.vue: Emitted showDocumentation");
       eventHub.emit("showDocumentation");
     },
   },

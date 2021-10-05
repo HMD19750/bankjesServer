@@ -1,4 +1,4 @@
-# testBankjes
+# bankjesServer
 
 Een project om vanuit de BankjesServer met alleen een API interface ook een Vue applicatie toe te voegen die hetzelfde is als de Wandelbankjes-app.
 
@@ -9,7 +9,7 @@ Een project om vanuit de BankjesServer met alleen een API interface ook een Vue 
 - Mitt en Leaflet toegevoegd
 ## 6-9-2021
 - Kaart is zichtbaar
-- Markers worden geod geplaatst
+- Markers worden goed geplaatst
 - Kaart wordt ververst bij scroll en pan
 
 ## 8-9-2021
@@ -39,4 +39,10 @@ Project op nieuwe branch "withVue" gezet van "bankjesServer"
 - meta-tags toegevoegd
 - user location een pulsating dot gemaakt
 - bug in delete bankje gefixed. Als er nu meer dan 1 bankje in zoekgebied zitten wordt de eerste gedelete. Voorheen werd niets gedelete.
+
+## 3-10-2021
+- Modal is nu scrollable op mobile (door height toe te voegen aan modal container)
+
+## 5-10-2021
+- Locatie user beweegt mee. Icon wordt alleen hertekent als de verplaatsing boven een bepaalde grens ligt
 

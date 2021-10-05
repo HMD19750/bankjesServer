@@ -181,29 +181,29 @@ export default {
 
 
   mounted() {
-    console.log("Addmenu mounted");
+    // console.log("Addmenu mounted");
   },
 
   methods: {
     exitBankje() {
-      console.log("AddMenu.vue: ExitBankje hit");
+      // console.log("AddMenu.vue: ExitBankje hit");
       eventHub.emit("endAdd");
     },
 
     addBankje() {
-      console.log("AddMenu.vue: addBankje hit");
+      // console.log("AddMenu.vue: addBankje hit");
       eventHub.emit("addBankje");
       eventHub.emit("endAdd");
     },
 
     addPicnicBankje() {
-      console.log("AddMenu.vue: addPicnicBankje hit");
+      // console.log("AddMenu.vue: addPicnicBankje hit");
       eventHub.emit("addPicnicBankje");
       eventHub.emit("endAdd");
     },
 
     addSchuilhut() {
-      console.log("AddMenu.vue: addSchuilhut hit");
+      // console.log("AddMenu.vue: addSchuilhut hit");
       eventHub.emit("addSchuilhut");
       eventHub.emit("endAdd");
     },

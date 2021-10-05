@@ -100,7 +100,7 @@
             <a href="mailto:helpdesk@evenuitrusten.nl">helpdesk</a>
           </p>
 
-          <div style="text-align: center">
+          <div style="text-align: center; margin-bottom:100px;">
             <button type="button" @click="closeModal">Ga terug</button>
             <p>U aangeboden door</p>
             <a href="https://www.deijsmannetjes.nl">
@@ -188,13 +188,14 @@ h1 {
 
 .modal-container {
   width: 300px;
+  height: 100vh;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   font-family: Helvetica, Arial, sans-serif;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .modal-header h3 {

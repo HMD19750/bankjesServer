@@ -29383,26 +29383,25 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     flash: _Flash_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  mounted: function mounted() {
-    console.log("Addmenu mounted");
+  mounted: function mounted() {// console.log("Addmenu mounted");
   },
   methods: {
     exitBankje: function exitBankje() {
-      console.log("AddMenu.vue: ExitBankje hit");
+      // console.log("AddMenu.vue: ExitBankje hit");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("endAdd");
     },
     addBankje: function addBankje() {
-      console.log("AddMenu.vue: addBankje hit");
+      // console.log("AddMenu.vue: addBankje hit");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("addBankje");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("endAdd");
     },
     addPicnicBankje: function addPicnicBankje() {
-      console.log("AddMenu.vue: addPicnicBankje hit");
+      // console.log("AddMenu.vue: addPicnicBankje hit");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("addPicnicBankje");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("endAdd");
     },
     addSchuilhut: function addSchuilhut() {
-      console.log("AddMenu.vue: addSchuilhut hit");
+      // console.log("AddMenu.vue: addSchuilhut hit");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("addSchuilhut");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("endAdd");
     }
@@ -29557,25 +29556,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     startAdd: function startAdd() {
-      console.log("MapApp: Hit eventhandler voor startAdd");
+      // console.log("MapApp: Hit eventhandler voor startAdd");
       this.showAddOverlay = true;
       this.showDeleteOverlay = false;
     },
     endAdd: function endAdd() {
-      console.log("MapApp: Hit eventhandler voor endAdd");
+      // console.log("MapApp: Hit eventhandler voor endAdd");
       this.showAddOverlay = false;
     },
     startDelete: function startDelete() {
-      console.log("MapApp.vue: Hit eventhandler voor startDelete");
+      // console.log("MapApp.vue: Hit eventhandler voor startDelete");
       this.showDeleteOverlay = true;
       this.showAddOverlay = false;
     },
     endDelete: function endDelete() {
-      console.log("MapApp.vue: Hit eventhandler voor EndDelete");
+      // console.log("MapApp.vue: Hit eventhandler voor EndDelete");
       this.showDeleteOverlay = false;
     },
     openModal: function openModal() {
-      //   console.log("MapApp.vue: openModal hit");
+      // console.log("MapApp.vue: openModal hit");
       this.showModal = true;
       this.showMenu = false;
       this.showAddOverlay = false;
@@ -29627,11 +29626,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       tileLayer: null,
       layers: [],
       zoom: 15,
-      centerMap: [51, 6],
-      userPosition: [51, 6],
+      centerMap: [52.09, 5.12],
+      userPosition: [52.09, 5.12],
+      userPositionOld: [51, 6],
       userPositionIcon: null,
       aantalBankjes: 0,
-      baseUrl: 'https://www.evenuitrusten.nl'
+      baseUrl: "https://www.evenuitrusten.nl"
     };
   },
   created: function created() {
@@ -29649,10 +29649,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     _app__WEBPACK_IMPORTED_MODULE_3__.eventHub.on("deleteBankje", this.deleteBankje);
   },
   mounted: function mounted() {
-    var options = {
+    navigator.geolocation.getCurrentPosition(this.initialLocationFound, this.initialLocationNotFound, {
       enableHighAccuracy: true
-    };
-    navigator.geolocation.getCurrentPosition(this.CurrentLocationFound, this.CurrentLocationNotFound, options);
+    });
   },
   methods: {
     InitAtMounted: function InitAtMounted() {
@@ -29662,9 +29661,16 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.getBankjes();
       setTimeout(this.createEventHandlers(), 1000);
       this.touchServer();
-      this.userPositionIcon = leaflet__WEBPACK_IMPORTED_MODULE_1___default().marker(this.userPosition, {
-        icon: this.centerIcon
-      }).addTo(this.map);
+    },
+    drawUserPosition: function drawUserPosition() {
+      var threshold = 0.0003; //Corresponds to 30 meter
+
+      var currentPos = this.userPositionIcon.getLatLng();
+      var d = Math.sqrt(Math.pow(currentPos.lat - this.userPosition[0], 2) + Math.pow(currentPos.lng - this.userPosition[1], 2));
+
+      if (d > threshold) {
+        this.userPositionIcon.setLatLng(this.userPosition); //Only redraw if location changed more than threshold
+      }
     },
     createEventHandlers: function createEventHandlers() {
       var _this2 = this;
@@ -29734,8 +29740,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var vertices = this.calculateRetrievalArea(this.map.getCenter());
       axios.get(this.baseUrl + "/api/area?lngLow=" + vertices.lngLow + "&lngHigh=" + vertices.lngHigh + "&latLow=" + vertices.latLow + "&latHigh=" + vertices.latHigh + "&number=200") // .get("https://www.evenuitrusten.nl/api/area/test")
       .then(function (response) {
-        _this3.bankjes = response.data;
-        console.log("Bankjes: axios has returned data");
+        _this3.bankjes = response.data; // console.log("Bankjes: axios has returned data");
 
         _this3.placeMarkers(_this3.bankjes);
 
@@ -29774,13 +29779,37 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     CurrentLocationFound: function CurrentLocationFound(pos) {
       console.log("CurrentLocationFound hit");
       this.userPosition = this.toLatLng(pos.coords.latitude, pos.coords.longitude);
-      this.InitAtMounted();
+      this.drawUserPosition();
     },
     CurrentLocationNotFound: function CurrentLocationNotFound(err) {
-      console.log("CurrentLocationNotFound hit");
-      console.log("getLocation returned " + err);
-      this.userPosition = this.toLatLng(51.430207, 5.982087);
+      console.log("CurrentLocationNotFound hit"); // console.log("getLocation returned " + err);
+
+      this.userPosition = this.toLatLng(51.430207, 5.982087); // this.InitAtMounted();
+
+      this.drawUserPosition();
+      this.userPositionOld = this.userPosition;
+    },
+    initialLocationFound: function initialLocationFound(pos) {
+      console.log("initialLocationFound hit");
+      this.userPosition = this.toLatLng(pos.coords.latitude, pos.coords.longitude);
       this.InitAtMounted();
+      this.userPositionIcon = leaflet__WEBPACK_IMPORTED_MODULE_1___default().marker(this.userPosition, {
+        icon: this.centerIcon
+      }).addTo(this.map);
+      setInterval(this.geo, 2000);
+    },
+    geo: function geo() {
+      navigator.geolocation.getCurrentPosition(this.CurrentLocationFound, this.CurrentLocationNotFound, {
+        enableHighAccuracy: true
+      });
+    },
+    initialLocationNotFound: function initialLocationNotFound(err) {
+      console.log("initialLocationNotFound hit"); // console.log("getLocation returned " + err);
+
+      this.InitAtMounted();
+      this.userMarkerLayerGroup = leaflet__WEBPACK_IMPORTED_MODULE_1___default().layerGroup().addTo(this.map);
+      this.userPosition = this.toLatLng(51.430207, 5.982087);
+      this.drawUserPosition();
     },
     addObject: function addObject(object) {
       var _this4 = this;
@@ -29876,8 +29905,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log("MenuButton started++++");
+  mounted: function mounted() {// console.log("MenuButton started++++");
   },
   components: {},
   data: function data() {
@@ -29889,19 +29917,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     reCenter: function reCenter() {
-      console.log("Emitted reCenter");
+      // console.log("Emitted reCenter");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("reCenter");
     },
     startAdd: function startAdd() {
-      console.log("Menubar.vue: Emitted startAdd");
+      // console.log("Menubar.vue: Emitted startAdd");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("startAdd");
     },
     startDelete: function startDelete() {
-      console.log("Menubar.vue: Emitted startDelete");
+      // console.log("Menubar.vue: Emitted startDelete");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("startDelete");
     },
     showDocumentation: function showDocumentation() {
-      console.log("Menubar.vue: Emitted showDocumentation");
+      // console.log("Menubar.vue: Emitted showDocumentation");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("showDocumentation");
     }
   }
@@ -30405,7 +30433,8 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_20 = {
   style: {
-    "text-align": "center"
+    "text-align": "center",
+    "margin-bottom": "100px"
   }
 };
 
@@ -30874,7 +30903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-c5c11784],\ntd[data-v-c5c11784] {\n  font-size: 0.75em;\n  margin-top:2px;\n}\nbutton[data-v-c5c11784] {\n  border-radius: 10px;\n  background-color: #3dc2ff;\n  outline: none;\n  padding: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\nbutton[data-v-c5c11784]:hover {\n  background-color: #42b983; /* Green */\n  color: white;\n}\n.no-scroll[data-v-c5c11784] {\n  --overflow: scroll;\n}\n.justify-content-center[data-v-c5c11784] {\n  text-align: center;\n}\n.blue[data-v-c5c11784] {\n  --background: #def0c7;\n}\nh1[data-v-c5c11784] {\n  font-size: medium;\n  font-weight: bold;\n  margin-bottom: 2px;\n}\n.modal-mask[data-v-c5c11784] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n}\n.modal-wrapper[data-v-c5c11784] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-c5c11784] {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  font-family: Helvetica, Arial, sans-serif;\n  overflow-y: scroll;\n}\n.modal-header h3[data-v-c5c11784] {\n  margin-top: 0;\n  color: #42b983;\n  font-weight: bold;\n}\n.modal-body[data-v-c5c11784] {\n  margin: 20px 0;\n}\n.modal-default-button[data-v-c5c11784] {\n  display: block;\n  margin-top: 1rem;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-active[data-v-c5c11784],\n.modal-leave-active[data-v-c5c11784] {\n  transition: opacity 0.5s ease;\n}\n.modal-enter-from[data-v-c5c11784],\n.modal-leave-to[data-v-c5c11784] {\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-c5c11784],\ntd[data-v-c5c11784] {\n  font-size: 0.75em;\n  margin-top:2px;\n}\nbutton[data-v-c5c11784] {\n  border-radius: 10px;\n  background-color: #3dc2ff;\n  outline: none;\n  padding: 10px;\n  border: none;\n  color: white;\n  transition-duration: 0.4s;\n}\nbutton[data-v-c5c11784]:hover {\n  background-color: #42b983; /* Green */\n  color: white;\n}\n.no-scroll[data-v-c5c11784] {\n  --overflow: scroll;\n}\n.justify-content-center[data-v-c5c11784] {\n  text-align: center;\n}\n.blue[data-v-c5c11784] {\n  --background: #def0c7;\n}\nh1[data-v-c5c11784] {\n  font-size: medium;\n  font-weight: bold;\n  margin-bottom: 2px;\n}\n.modal-mask[data-v-c5c11784] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n}\n.modal-wrapper[data-v-c5c11784] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-c5c11784] {\n  width: 300px;\n  height: 100vh;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  font-family: Helvetica, Arial, sans-serif;\n  overflow-y: auto;\n}\n.modal-header h3[data-v-c5c11784] {\n  margin-top: 0;\n  color: #42b983;\n  font-weight: bold;\n}\n.modal-body[data-v-c5c11784] {\n  margin: 20px 0;\n}\n.modal-default-button[data-v-c5c11784] {\n  display: block;\n  margin-top: 1rem;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-active[data-v-c5c11784],\n.modal-leave-active[data-v-c5c11784] {\n  transition: opacity 0.5s ease;\n}\n.modal-enter-from[data-v-c5c11784],\n.modal-leave-to[data-v-c5c11784] {\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30922,7 +30951,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll {\n  --overflow: hidden;\n}\n#myMap {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.pulsating-circle {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  width: 30px;\n  height: 30px;\n}\n.pulsating-circle:before {\n  content: \"\";\n  position: relative;\n  display: block;\n  width: 300%;\n  height: 300%;\n  box-sizing: border-box;\n  margin-left: -100%;\n  margin-top: -100%;\n  border-radius: 45px;\n  background-color: red;\n  -webkit-animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n          animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n}\n.pulsating-circle:after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  border-radius: 15px;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  -webkit-animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n          animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n}\n@-webkit-keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%, 100% {\n    opacity: 0;\n}\n}\n@keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%, 100% {\n    opacity: 0;\n}\n}\n@-webkit-keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n@keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll {\n  --overflow: hidden;\n}\n#myMap {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.pulsating-circle {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  width: 30px;\n  height: 30px;\n}\n.pulsating-circle:before {\n  content: \"\";\n  position: relative;\n  display: block;\n  width: 300%;\n  height: 300%;\n  box-sizing: border-box;\n  margin-left: -100%;\n  margin-top: -100%;\n  border-radius: 45px;\n  background-color: red;\n  -webkit-animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1)\n    infinite;\n  animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n}\n.pulsating-circle:after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  border-radius: 15px;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  -webkit-animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s\n    infinite;\n  animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n}\n@-webkit-keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@-webkit-keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n@keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

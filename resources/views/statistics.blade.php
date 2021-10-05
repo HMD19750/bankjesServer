@@ -20,14 +20,15 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="margin-left:25px;">
         <h1>Bankjesserver statistieken</h1>
         <p>Aantal bankjes is {{$noBankjes}}</p>
         <p>Aantal picnicbankjes is {{$noPicnicBankjes}}</p>
         <p>Aantal schuilhutten is {{$noSchuilhutten}}</p>
 
         <p>Totaal aantal aanroepen van de app is {{$noTouches}}</p>
-<p>Totaal aantal toegevoegde objecten is {{$noAdds}}</p>
-<p>Totaal aantal verwijderde objecten is {{$noDeletes}}</p>
+        <p>Totaal aantal toegevoegde objecten is {{$noAdds}}</p>
+        <p>Totaal aantal verwijderde objecten is {{$noDeletes}}</p>
+        
     </body>
 </html>
