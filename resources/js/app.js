@@ -4,6 +4,8 @@ import MapApp from './components/MapApp.vue'
 
 import 'leaflet/dist/leaflet.css'
 
+import L from "leaflet";
+
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

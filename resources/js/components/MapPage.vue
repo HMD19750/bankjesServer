@@ -4,7 +4,6 @@
 
 <script>
 import { defineComponent } from "vue";
-import L from "leaflet";
 import icons from "../mixins/icons.js";
 import { eventHub } from "../app";
 
@@ -59,7 +58,7 @@ export default defineComponent({
     },
 
     drawUserPosition() {
-      const threshold=0.0003;    //Corresponds to 30 meter
+      const threshold=0.0001;    //Corresponds to 10 meter
       var currentPos=this.userPositionIcon.getLatLng();
       var d=Math.sqrt((currentPos.lat-this.userPosition[0])**2+(currentPos.lng-this.userPosition[1])**2);
       if(d>threshold){
@@ -229,7 +228,7 @@ export default defineComponent({
           this.CurrentLocationFound,
           this.CurrentLocationNotFound,
           { enableHighAccuracy: true }
-      )),2000);
+      ),4000);
     },
 
     initialLocationNotFound(err) {
@@ -353,6 +352,7 @@ export default defineComponent({
   transform: translateX(-50%) translateY(-50%);
   width: 30px;
   height: 30px;
+  z-index:9999 !important;
 }
 
 .pulsating-circle:before {

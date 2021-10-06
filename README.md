@@ -46,3 +46,9 @@ Project op nieuwe branch "withVue" gezet van "bankjesServer"
 ## 5-10-2021
 - Locatie user beweegt mee. Icon wordt alleen hertekent als de verplaatsing boven een bepaalde grens ligt
 
+
+## 6-10-2021
+- z-value van de pulsating dot verhoogd
+- threshold voor hertekening omlaag gebracht van 30 naar 10 meter
+- kleur van picnicbankjes meer onderscheidend gemaakt
+
