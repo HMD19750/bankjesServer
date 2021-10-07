@@ -52,3 +52,7 @@ Project op nieuwe branch "withVue" gezet van "bankjesServer"
 - threshold voor hertekening omlaag gebracht van 30 naar 10 meter
 - kleur van picnicbankjes meer onderscheidend gemaakt
 
+## Versie 1.2.0
+- Alles weer gemerged naar master branch
+- Weer naar guthub gepushed
+
