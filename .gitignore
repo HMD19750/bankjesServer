@@ -4,6 +4,8 @@
 /storage/*.key
 /storage/logs
 /vendor
+/logs
+/stats
 /database/seeders/json
 .env
 .env.backup
