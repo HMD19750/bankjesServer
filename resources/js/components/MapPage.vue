@@ -29,6 +29,11 @@ export default defineComponent({
       userPositionIcon: null,
       aantalBankjes: 0,
       baseUrl: "https://www.evenuitrusten.nl",
+      normalGetRoute: "https://www.evenuitrusten.nl/api/area",
+      addedDeletedGetRoute:
+        "https://www.evenuitrusten.nl/api/area/addedDeleted",
+      currentRoute: "https://www.evenuitrusten.nl/api/area",
+      addedDeletedMode: false,
     };
   },
 
@@ -37,6 +42,8 @@ export default defineComponent({
     eventHub.on("addPicnicBankje", (e) => this.addObject("picnicbankje", e));
     eventHub.on("addSchuilhut", (e) => this.addObject("schuilhut", e));
     eventHub.on("deleteBankje", this.deleteBankje);
+    eventHub.on("showAddedDeleted", this.showAddedDeleted);
+    eventHub.on("hideAddedDeleted", this.hideAddedDeleted);
   },
 
   mounted() {
@@ -50,32 +57,49 @@ export default defineComponent({
   methods: {
     InitAtMounted() {
       this.centerMap = this.userPosition;
-      console.log(this.userPosition);
+      // console.log(this.userPosition);
       this.map = this.initMap();
-      this.getBankjes();
+      this.getBankjes(this.currentRoute);
       setTimeout(this.createEventHandlers(), 1000);
       this.touchServer();
     },
 
     drawUserPosition() {
-      const threshold=0.0001;    //Corresponds to 10 meter
-      var currentPos=this.userPositionIcon.getLatLng();
-      var d=Math.sqrt((currentPos.lat-this.userPosition[0])**2+(currentPos.lng-this.userPosition[1])**2);
-      if(d>threshold){
-            this.userPositionIcon.setLatLng(this.userPosition); //Only redraw if location changed more than threshold
-      }      
+      const threshold = 0.0001; //Corresponds to 10 meter
+      var currentPos = this.userPositionIcon.getLatLng();
+      var d = Math.sqrt(
+        (currentPos.lat - this.userPosition[0]) ** 2 +
+          (currentPos.lng - this.userPosition[1]) ** 2
+      );
+      if (d > threshold) {
+        this.userPositionIcon.setLatLng(this.userPosition); //Only redraw if location changed more than threshold
+      }
     },
 
     createEventHandlers() {
       this.map.on("moveend", () => {
         if (this.moveDebounce) {
           this.markerLayerGroup.clearLayers();
-          this.getBankjes();
+          this.getBankjes(this.currentRoute);
         }
         this.moveDebounce = true;
       });
 
       eventHub.on("reCenter", this.reCenter);
+    },
+
+    showAddedDeleted() {
+      this.currentRoute = this.addedDeletedGetRoute;
+      this.addedDeletedMode = true;
+      this.markerLayerGroup.clearLayers();
+      this.getBankjes(this.currentRoute);
+    },
+
+    hideAddedDeleted() {
+      this.currentRoute = this.normalGetRoute;
+      this.addedDeletedMode = false;
+      this.markerLayerGroup.clearLayers();
+      this.getBankjes(this.currentRoute);
     },
 
     // Touching the server for log purposes
@@ -136,12 +160,12 @@ export default defineComponent({
       };
     },
 
-    getBankjes() {
+    getBankjes(route) {
       let vertices = this.calculateRetrievalArea(this.map.getCenter());
       axios
         .get(
-          this.baseUrl +
-            "/api/area?lngLow=" +
+          route +
+            "?lngLow=" +
             vertices.lngLow +
             "&lngHigh=" +
             vertices.lngHigh +
@@ -169,14 +193,23 @@ export default defineComponent({
     placeMarkers(bankjes) {
       this.markerLayerGroup = L.layerGroup().addTo(this.map);
       for (let i = 0; i < bankjes.length; i++) {
-        if (bankjes[i].typeBankje == "picnicbankje") {
-          this.icon = this.picnicBankjeIcon;
-        }
-        if (bankjes[i].typeBankje == "schuilhut") {
-          this.icon = this.schuilhutIcon;
-        }
-        if (bankjes[i].typeBankje == "bankje") {
-          this.icon = this.bankjeIcon;
+        if (this.addedDeletedMode) {
+          if (bankjes[i].status == "added") {
+            this.icon = this.addedIcon;
+          }
+          if (bankjes[i].status == "deleted") {
+            this.icon = this.deletedIcon;
+          }
+        } else {
+          if (bankjes[i].typeBankje == "picnicbankje") {
+            this.icon = this.picnicBankjeIcon;
+          }
+          if (bankjes[i].typeBankje == "schuilhut") {
+            this.icon = this.schuilhutIcon;
+          }
+          if (bankjes[i].typeBankje == "bankje") {
+            this.icon = this.bankjeIcon;
+          }
         }
 
         bankjes[i].marker = L.marker(
@@ -193,7 +226,6 @@ export default defineComponent({
     },
 
     CurrentLocationFound(pos) {
-      console.log("CurrentLocationFound hit");
       this.userPosition = this.toLatLng(
         pos.coords.latitude,
         pos.coords.longitude
@@ -202,7 +234,6 @@ export default defineComponent({
     },
 
     CurrentLocationNotFound(err) {
-      console.log("CurrentLocationNotFound hit");
       // console.log("getLocation returned " + err);
       this.userPosition = this.toLatLng(51.430207, 5.982087);
       // this.InitAtMounted();
@@ -211,8 +242,7 @@ export default defineComponent({
     },
 
     initialLocationFound(pos) {
-      console.log("initialLocationFound hit");
-
+      // console.log("initialLocationFound hit");
       this.userPosition = this.toLatLng(
         pos.coords.latitude,
         pos.coords.longitude
@@ -224,11 +254,15 @@ export default defineComponent({
         icon: this.centerIcon,
       }).addTo(this.map);
 
-      setInterval(()=>navigator.geolocation.getCurrentPosition(
-          this.CurrentLocationFound,
-          this.CurrentLocationNotFound,
-          { enableHighAccuracy: true }
-      ),4000);
+      setInterval(
+        () =>
+          navigator.geolocation.getCurrentPosition(
+            this.CurrentLocationFound,
+            this.CurrentLocationNotFound,
+            { enableHighAccuracy: true }
+          ),
+        4000
+      );
     },
 
     initialLocationNotFound(err) {
@@ -282,7 +316,7 @@ export default defineComponent({
       // console.log(this.zoekGebied());
       let bankjesFound = this.bankjes.filter(this.inZoekGebied);
       if (bankjesFound.length >= 1) {
-        console.log("Een gevonden");
+        // console.log("Een gevonden");
         axios
           .delete(this.baseUrl + "/api/bankje/" + bankjesFound[0].id)
           .catch(function (error) {
@@ -352,7 +386,7 @@ export default defineComponent({
   transform: translateX(-50%) translateY(-50%);
   width: 30px;
   height: 30px;
-  z-index:9999 !important;
+  z-index: 9999 !important;
 }
 
 .pulsating-circle:before {

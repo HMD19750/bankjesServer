@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/area', [BankjeController::class, 'index']);
+Route::get('/area/addedDeleted', [BankjeController::class, 'addedDeleted']);
 Route::get('/area/test', [BankjeController::class, 'index']);
 Route::delete('/bankje/{bankje}', [BankjeController::class, 'delete']);
 Route::post('/bankje', [BankjeController::class, 'store']);

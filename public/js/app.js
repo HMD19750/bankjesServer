@@ -29463,7 +29463,6 @@ __webpack_require__.r(__webpack_exports__);
   name: "DocumentationModal",
   methods: {
     closeModal: function closeModal() {
-      console.log("Menubar.vue: Emitted closeDocumentation-");
       _app_js__WEBPACK_IMPORTED_MODULE_1__.eventHub.emit("closeDocumentation");
     }
   }
@@ -29628,7 +29627,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       userPositionOld: [51, 6],
       userPositionIcon: null,
       aantalBankjes: 0,
-      baseUrl: "https://www.evenuitrusten.nl"
+      baseUrl: "https://www.evenuitrusten.nl",
+      normalGetRoute: "https://www.evenuitrusten.nl/api/area",
+      addedDeletedGetRoute: "https://www.evenuitrusten.nl/api/area/addedDeleted",
+      currentRoute: "https://www.evenuitrusten.nl/api/area",
+      addedDeletedMode: false
     };
   },
   created: function created() {
@@ -29644,6 +29647,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       return _this.addObject("schuilhut", e);
     });
     _app__WEBPACK_IMPORTED_MODULE_2__.eventHub.on("deleteBankje", this.deleteBankje);
+    _app__WEBPACK_IMPORTED_MODULE_2__.eventHub.on("showAddedDeleted", this.showAddedDeleted);
+    _app__WEBPACK_IMPORTED_MODULE_2__.eventHub.on("hideAddedDeleted", this.hideAddedDeleted);
   },
   mounted: function mounted() {
     navigator.geolocation.getCurrentPosition(this.initialLocationFound, this.initialLocationNotFound, {
@@ -29652,10 +29657,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   methods: {
     InitAtMounted: function InitAtMounted() {
-      this.centerMap = this.userPosition;
-      console.log(this.userPosition);
+      this.centerMap = this.userPosition; // console.log(this.userPosition);
+
       this.map = this.initMap();
-      this.getBankjes();
+      this.getBankjes(this.currentRoute);
       setTimeout(this.createEventHandlers(), 1000);
       this.touchServer();
     },
@@ -29676,12 +29681,24 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         if (_this2.moveDebounce) {
           _this2.markerLayerGroup.clearLayers();
 
-          _this2.getBankjes();
+          _this2.getBankjes(_this2.currentRoute);
         }
 
         _this2.moveDebounce = true;
       });
       _app__WEBPACK_IMPORTED_MODULE_2__.eventHub.on("reCenter", this.reCenter);
+    },
+    showAddedDeleted: function showAddedDeleted() {
+      this.currentRoute = this.addedDeletedGetRoute;
+      this.addedDeletedMode = true;
+      this.markerLayerGroup.clearLayers();
+      this.getBankjes(this.currentRoute);
+    },
+    hideAddedDeleted: function hideAddedDeleted() {
+      this.currentRoute = this.normalGetRoute;
+      this.addedDeletedMode = false;
+      this.markerLayerGroup.clearLayers();
+      this.getBankjes(this.currentRoute);
     },
     // Touching the server for log purposes
     touchServer: function touchServer() {
@@ -29731,11 +29748,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         latHigh: latHigh
       };
     },
-    getBankjes: function getBankjes() {
+    getBankjes: function getBankjes(route) {
       var _this3 = this;
 
       var vertices = this.calculateRetrievalArea(this.map.getCenter());
-      axios.get(this.baseUrl + "/api/area?lngLow=" + vertices.lngLow + "&lngHigh=" + vertices.lngHigh + "&latLow=" + vertices.latLow + "&latHigh=" + vertices.latHigh + "&number=200") // .get("https://www.evenuitrusten.nl/api/area/test")
+      axios.get(route + "?lngLow=" + vertices.lngLow + "&lngHigh=" + vertices.lngHigh + "&latLow=" + vertices.latLow + "&latHigh=" + vertices.latHigh + "&number=200") // .get("https://www.evenuitrusten.nl/api/area/test")
       .then(function (response) {
         _this3.bankjes = response.data; // console.log("Bankjes: axios has returned data");
 
@@ -29753,16 +29770,26 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.markerLayerGroup = L.layerGroup().addTo(this.map);
 
       for (var i = 0; i < bankjes.length; i++) {
-        if (bankjes[i].typeBankje == "picnicbankje") {
-          this.icon = this.picnicBankjeIcon;
-        }
+        if (this.addedDeletedMode) {
+          if (bankjes[i].status == "added") {
+            this.icon = this.addedIcon;
+          }
 
-        if (bankjes[i].typeBankje == "schuilhut") {
-          this.icon = this.schuilhutIcon;
-        }
+          if (bankjes[i].status == "deleted") {
+            this.icon = this.deletedIcon;
+          }
+        } else {
+          if (bankjes[i].typeBankje == "picnicbankje") {
+            this.icon = this.picnicBankjeIcon;
+          }
 
-        if (bankjes[i].typeBankje == "bankje") {
-          this.icon = this.bankjeIcon;
+          if (bankjes[i].typeBankje == "schuilhut") {
+            this.icon = this.schuilhutIcon;
+          }
+
+          if (bankjes[i].typeBankje == "bankje") {
+            this.icon = this.bankjeIcon;
+          }
         }
 
         bankjes[i].marker = L.marker(this.toLatLng(bankjes[i].Latitude, bankjes[i].Longitude), {
@@ -29774,13 +29801,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.map.flyTo(this.userPosition, this.zoom);
     },
     CurrentLocationFound: function CurrentLocationFound(pos) {
-      console.log("CurrentLocationFound hit");
       this.userPosition = this.toLatLng(pos.coords.latitude, pos.coords.longitude);
       this.drawUserPosition();
     },
     CurrentLocationNotFound: function CurrentLocationNotFound(err) {
-      console.log("CurrentLocationNotFound hit"); // console.log("getLocation returned " + err);
-
+      // console.log("getLocation returned " + err);
       this.userPosition = this.toLatLng(51.430207, 5.982087); // this.InitAtMounted();
 
       this.drawUserPosition();
@@ -29789,7 +29814,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     initialLocationFound: function initialLocationFound(pos) {
       var _this4 = this;
 
-      console.log("initialLocationFound hit");
+      // console.log("initialLocationFound hit");
       this.userPosition = this.toLatLng(pos.coords.latitude, pos.coords.longitude);
       this.InitAtMounted();
       this.userPositionIcon = L.marker(this.userPosition, {
@@ -29846,7 +29871,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var bankjesFound = this.bankjes.filter(this.inZoekGebied);
 
       if (bankjesFound.length >= 1) {
-        console.log("Een gevonden");
+        // console.log("Een gevonden");
         axios["delete"](this.baseUrl + "/api/bankje/" + bankjesFound[0].id)["catch"](function (error) {
           console.log("Error in FrontPage-deleteBankje:" + error);
         });
@@ -29899,34 +29924,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _Flash_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Flash.vue */ "./resources/js/components/Flash.vue");
 
+ // Button sequence die app in addedDeleted mode zet
+
+var SECRET_COMBINATION = ["reCenter", "reCenter", "reCenter", "reCenter", "startAdd"];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {// console.log("MenuButton started++++");
+  components: {
+    flash: _Flash_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  components: {},
   data: function data() {
-    return {//   locationArrow: faLocationArrow,
-      //   plus: faPlus,
-      //   minus: faMinus,
-      //   info: faInfo,
+    return {
+      showAddedDeletedIcons: false,
+      buttonStack: []
     };
   },
   methods: {
     reCenter: function reCenter() {
-      // console.log("Emitted reCenter");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("reCenter");
+      this.addToButtonStack("reCenter");
     },
+    // Opent add -menu
     startAdd: function startAdd() {
-      // console.log("Menubar.vue: Emitted startAdd");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("startAdd");
+      this.addToButtonStack("startAdd");
     },
+    //Opent delete-menu
     startDelete: function startDelete() {
-      // console.log("Menubar.vue: Emitted startDelete");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("startDelete");
+      this.addToButtonStack("startDelete");
     },
+    //Opent Documentatie modal
     showDocumentation: function showDocumentation() {
-      // console.log("Menubar.vue: Emitted showDocumentation");
       _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("showDocumentation");
+      this.addToButtonStack("showDocumentation");
+    },
+    // Switched van addedDeleted mode naar normal mode
+    hideAddedDeleted: function hideAddedDeleted() {
+      this.showAddedDeletedIcons = false;
+      _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("hideAddedDeleted");
+    },
+    // Controleert op geheime button sequence
+    addToButtonStack: function addToButtonStack(buttonPressed) {
+      this.buttonStack.push(buttonPressed);
+
+      if (this.buttonStack.length > 5) {
+        this.buttonStack.shift();
+      }
+
+      if (this.secretCombinationPressed()) {
+        _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("showAddedDeleted");
+        _app__WEBPACK_IMPORTED_MODULE_0__.eventHub.emit("endAdd");
+        this.showAddedDeletedIcons = true;
+      }
+    },
+    secretCombinationPressed: function secretCombinationPressed() {
+      return JSON.stringify(this.buttonStack) == JSON.stringify(SECRET_COMBINATION) ? true : false;
     }
   }
 });
@@ -30614,34 +30667,67 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = [_hoisted_8];
 
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "menuIcon fas fa-book-open"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = [_hoisted_10];
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Now showing added and deleted benches");
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  var _component_flash = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("flash");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "MenuButton",
     href: "#",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.reCenter && $options.reCenter.apply($options, arguments);
     })
-  }, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_3), !$data.showAddedDeletedIcons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
     "class": "MenuButton",
     href: "#",
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.startAdd && $options.startAdd.apply($options, arguments);
     })
-  }, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.showAddedDeletedIcons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
     "class": "MenuButton",
     href: "#",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.startDelete && $options.startDelete.apply($options, arguments);
     })
-  }, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "MenuButton",
     href: "#",
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.showDocumentation && $options.showDocumentation.apply($options, arguments);
     })
-  }, _hoisted_9)]);
+  }, _hoisted_9), $data.showAddedDeletedIcons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 2,
+    "class": "MenuButton",
+    href: "#",
+    onClick: _cache[4] || (_cache[4] = function () {
+      return $options.hideAddedDeleted && $options.hideAddedDeleted.apply($options, arguments);
+    }),
+    style: {
+      "background-color": "red"
+    }
+  }, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.showAddedDeletedIcons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_flash, {
+    key: 0
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -30734,10 +30820,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_images_schuilhut_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/images/schuilhut.png */ "./resources/js/assets/images/schuilhut.png");
 /* harmony import */ var _assets_images_bankje_marker_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/images/bankje-marker.png */ "./resources/js/assets/images/bankje-marker.png");
 /* harmony import */ var _assets_images_picnicBankje_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/images/picnicBankje.png */ "./resources/js/assets/images/picnicBankje.png");
-/* harmony import */ var _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/images/schaduw.png */ "./resources/js/assets/images/schaduw.png");
-/* harmony import */ var _assets_images_MapsCenterIcon_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/images/MapsCenterIcon.png */ "./resources/js/assets/images/MapsCenterIcon.png");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _assets_images_bankje_groen_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../assets/images/bankje-groen.png */ "./resources/js/assets/images/bankje-groen.png");
+/* harmony import */ var _assets_images_bankje_rood_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../assets/images/bankje-rood.png */ "./resources/js/assets/images/bankje-rood.png");
+/* harmony import */ var _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../assets/images/schaduw.png */ "./resources/js/assets/images/schaduw.png");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -30748,51 +30836,67 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     // Initialiseer een Icon object
     bankjeIcon: function bankjeIcon() {
-      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().icon({
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().icon({
         iconUrl: _assets_images_bankje_marker_png__WEBPACK_IMPORTED_MODULE_1__["default"],
         iconSize: [20, 32],
         // size of the icon
         iconAnchor: [10, 32],
         // point of the icon which will correspond to marker's location
-        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__["default"],
         shadowSize: [20, 32],
         shadowAnchor: [0, 32]
       });
     },
     schuilhutIcon: function schuilhutIcon() {
-      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().icon({
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().icon({
         iconUrl: _assets_images_schuilhut_png__WEBPACK_IMPORTED_MODULE_0__["default"],
         iconSize: [20, 32],
         // size of the icon
         iconAnchor: [10, 32],
         // point of the icon which will correspond to marker's location
-        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__["default"],
         shadowSize: [20, 32],
         shadowAnchor: [0, 32]
       });
     },
     picnicBankjeIcon: function picnicBankjeIcon() {
-      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().icon({
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().icon({
         iconUrl: _assets_images_picnicBankje_png__WEBPACK_IMPORTED_MODULE_2__["default"],
         iconSize: [20, 32],
         // size of the icon
         iconAnchor: [10, 32],
         // point of the icon which will correspond to marker's location
-        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__["default"],
         shadowSize: [20, 32],
         shadowAnchor: [0, 32]
       });
     },
-    // centerIcon() {
-    //     return L.icon({
-    //         iconUrl: MapsCenterIcon,
-    //         iconSize: [40, 40], // size of the icon
-    //         iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
-    //         className: 'user-location-icon'  // Om hem te stylen
-    //     });
-    // },
+    addedIcon: function addedIcon() {
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().icon({
+        iconUrl: _assets_images_bankje_groen_png__WEBPACK_IMPORTED_MODULE_3__["default"],
+        iconSize: [20, 32],
+        // size of the icon
+        iconAnchor: [10, 32],
+        // point of the icon which will correspond to marker's location
+        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__["default"],
+        shadowSize: [20, 32],
+        shadowAnchor: [0, 32]
+      });
+    },
+    deletedIcon: function deletedIcon() {
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().icon({
+        iconUrl: _assets_images_bankje_rood_png__WEBPACK_IMPORTED_MODULE_4__["default"],
+        iconSize: [20, 32],
+        // size of the icon
+        iconAnchor: [10, 32],
+        // point of the icon which will correspond to marker's location
+        shadowUrl: _assets_images_schaduw_png__WEBPACK_IMPORTED_MODULE_5__["default"],
+        shadowSize: [20, 32],
+        shadowAnchor: [0, 32]
+      });
+    },
     centerIcon: function centerIcon() {
-      return leaflet__WEBPACK_IMPORTED_MODULE_5___default().divIcon({
+      return leaflet__WEBPACK_IMPORTED_MODULE_6___default().divIcon({
         className: 'pulsating-circle'
       });
     }
@@ -30950,7 +31054,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll {\n  --overflow: hidden;\n}\n#myMap {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.pulsating-circle {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  width: 30px;\n  height: 30px;\n  z-index:9999 !important;\n}\n.pulsating-circle:before {\n  content: \"\";\n  position: relative;\n  display: block;\n  width: 300%;\n  height: 300%;\n  box-sizing: border-box;\n  margin-left: -100%;\n  margin-top: -100%;\n  border-radius: 45px;\n  background-color: red;\n  -webkit-animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1)\n    infinite;\n  animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n}\n.pulsating-circle:after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  border-radius: 15px;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  -webkit-animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s\n    infinite;\n  animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n}\n@-webkit-keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@-webkit-keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n@keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.no-scroll {\n  --overflow: hidden;\n}\n#myMap {\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n.pulsating-circle {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translateX(-50%) translateY(-50%);\n  width: 30px;\n  height: 30px;\n  z-index: 9999 !important;\n}\n.pulsating-circle:before {\n  content: \"\";\n  position: relative;\n  display: block;\n  width: 300%;\n  height: 300%;\n  box-sizing: border-box;\n  margin-left: -100%;\n  margin-top: -100%;\n  border-radius: 45px;\n  background-color: red;\n  -webkit-animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1)\n    infinite;\n  animation: pulse-ring 2.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;\n}\n.pulsating-circle:after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  top: 0;\n  display: block;\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  border-radius: 15px;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  -webkit-animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s\n    infinite;\n  animation: pulse-dot 2.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;\n}\n@-webkit-keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@keyframes pulse-ring {\n0% {\n    transform: scale(0.33);\n}\n80%,\n  100% {\n    opacity: 0;\n}\n}\n@-webkit-keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n@keyframes pulse-dot {\n0% {\n    transform: scale(0.8);\n}\n50% {\n    transform: scale(1);\n}\n100% {\n    transform: scale(0.8);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31146,10 +31250,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/assets/images/MapsCenterIcon.png":
-/*!*******************************************************!*\
-  !*** ./resources/js/assets/images/MapsCenterIcon.png ***!
-  \*******************************************************/
+/***/ "./resources/js/assets/images/bankje-groen.png":
+/*!*****************************************************!*\
+  !*** ./resources/js/assets/images/bankje-groen.png ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31157,7 +31261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/MapsCenterIcon.png?baa9df929c01f7edf9e52216edbd5ce3");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bankje-groen.png?cb3cdfd48469bbf301be07a9d87831a2");
 
 /***/ }),
 
@@ -31173,6 +31277,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bankje-marker.png?03392f7079a57c3cf21e313a754c8acb");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/bankje-rood.png":
+/*!****************************************************!*\
+  !*** ./resources/js/assets/images/bankje-rood.png ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bankje-rood.png?20b043cf871527cf382b1a3aa7dd6e98");
 
 /***/ }),
 

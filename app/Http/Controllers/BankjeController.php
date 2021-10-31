@@ -97,5 +97,34 @@ class BankjeController extends Controller
         return "Server touched";
     }
 
+    public function addedDeleted(Request $request)    //Retrieves added and deleted benches 
+    {
+        if($request->number) {
+            $number=$request->number;
+        } else {
+            $number=1;
+        }
+
+            $lngLow = $request->lngLow;
+            $lngHigh = $request->lngHigh;
+            $latLow = $request->latLow;
+            $latHigh = $request->latHigh;
+
+        $bankjes = DB::table('bankjes')
+            ->select("id", "typeBankje", "Latitude", "Longitude", "status")
+            ->where('status', 'deleted')
+            ->orWhere('status','added')
+            ->whereBetween('Latitude', [$latLow, $latHigh])
+            ->whereBetween('Longitude', [$lngLow, $lngHigh])  
+            ->get()
+            ->shuffle();
+
+            $length=$bankjes->count();
+            
+            $bankjes=$bankjes->take($number);
+
+        return $bankjes;
+    }
+
     
 }

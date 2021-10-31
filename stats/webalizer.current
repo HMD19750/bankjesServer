@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 # Webalizer V2.23-08 Incremental Data - 10/31/2021 00:06:20
 2021 10 31 0 6 20
 4753 4341 65 25 14 43 31578434 1864 88 0
 1 149 761 1 31
+=======
+# Webalizer V2.23-08 Incremental Data - 10/27/2021 22:06:31
+2021 10 27 22 6 31
+3548 3090 95 26 15 52 26610424 1639 107 0
+13 40 479 1 27
+>>>>>>> addedDeleted
 39 26 42060 7 27 4
 296 227 2640158 13 178 8
 1261 1151 9390827 17 499 16
@@ -19,6 +26,7 @@
 0 0 0 0 0 0
 0 0 0 0 0 0
 0 0 0 0 0 0
+<<<<<<< HEAD
 0 0 0 0 0 0
 0 0 0 0 0 0
 0 0 0 0 0 0
@@ -30,11 +38,24 @@
 0 0 0 0 0 0
 0 0 0 0 0 0
 927 804 10980331 13 374 13
+=======
+159 104 1539493 9 76 6
+60 37 1830976 17 22 6
+33 21 29837 11 15 3
+31 17 23137 15 19 8
+9 2 13490 8 2 1
+23 12 26900 13 8 5
+27 20 11236 9 18 1
+7 0 11460 6 1 1
+137 125 13574 7 107 1
+227 190 2591774 13 165 7
+>>>>>>> addedDeleted
 0 0 0 0 0 0
 842 826 79556 10 247 7
 149 149 0 1 37 1
 152 151 7803 40
 2 1 2560 2
+<<<<<<< HEAD
 10 7 13490 7
 2 2 1921 1
 19 9 27684 9
@@ -62,23 +83,68 @@
 0
 4341
 13
+=======
+9 6 13125 6
+2 0 3522 0
+22 10 31265 12
+25 13 24590 18
+14 8 418376 9
+2 1 2485 2
+40 28 717255 20
+40 35 29494 32
+241 160 4208159 94
+171 129 1069610 106
+275 250 3468078 144
+85 72 920732 53
+232 140 2223822 104
+305 287 1346131 118
+85 82 1409000 70
+25 22 39978 23
+23 16 27088 11
+46 41 10867 25
+480 466 957469 254
+726 682 5111120 292
+493 443 3782359 187
+202 196 785536 54
 0
 0
+>>>>>>> addedDeleted
+0
+3090
+17
+0
+<<<<<<< HEAD
 62
+=======
+>>>>>>> addedDeleted
+0
+41
 0
 0
-0
+<<<<<<< HEAD
 53
+=======
+>>>>>>> addedDeleted
 0
+103
+1
 0
+<<<<<<< HEAD
 64
+=======
+60
+>>>>>>> addedDeleted
 0
 0
 0
 0
 0
 4
+<<<<<<< HEAD
 201
+=======
+230
+>>>>>>> addedDeleted
 0
 0
 0
@@ -92,7 +158,11 @@
 0
 0
 0
+<<<<<<< HEAD
 15
+=======
+2
+>>>>>>> addedDeleted
 0
 0
 0
@@ -100,6 +170,7 @@
 0
 # -urls- 
 /images/picnicBankje.png
+<<<<<<< HEAD
 0 413 0 787392 0 0
 /images/bankje-groen.png
 0 145 0 762320 0 0
@@ -133,11 +204,49 @@
 0 621 0 1493596 0 0
 /
 0 318 0 128536 69 2
+=======
+0 259 0 979057 0 0
+/api/bankje/96603
+0 1 0 0 0 0
+/images/schuilhutIcon.png
+0 20 0 28576 0 0
+/images/minus.png
+0 11 0 83049 0 0
+/api/bankje/28926
+0 1 0 204 0 0
+/images/app_icon_150.png
+0 41 0 94415 0 0
+/api/area
+0 984 0 556235 11 21
+/api/bankje/35124
+0 1 0 204 0 0
+/favicon.ico
+0 154 0 766 0 0
+/js/app.js
+0 154 0 19778576 0 0
+/images/schuilhut.png
+0 182 0 1033524 0 0
+/api/bankje/28932
+0 1 0 204 0 0
+/images/picnictafel200x200.png
+0 20 0 18744 0 0
+/api/bankje/touch
+0 253 0 2873 9 12
+/api/bankje/55519
+0 1 0 0 0 0
+/images/bankje256x256.png
+0 20 0 8096 0 0
+/images/schaduw.png
+0 307 0 842534 0 0
+/
+0 294 0 137958 80 4
+>>>>>>> addedDeleted
 /api/bankje/96572
 0 1 0 205 0 0
 /images/MapsCenterIcon.png
 0 17 0 50756 0 0
 /images/ijsmannetjesbanner.png
+<<<<<<< HEAD
 0 28 0 843800 0 0
 /admin
 0 4 0 0 0 0
@@ -149,10 +258,23 @@
 0 1 0 207 0 0
 /images/bankje-marker.png
 0 438 0 782471 0 0
+=======
+0 30 0 1012948 0 0
+/admin
+0 4 0 0 0 0
+/robots.txt
+0 44 0 17458 0 0
+/images/cross.png
+0 28 0 438016 0 0
+/api/bankje/95581
+0 1 0 207 0 0
+/images/bankje-marker.png
+0 321 0 858510 0 0
+>>>>>>> addedDeleted
 # End Of Table - urls
 # -sites- (monthly)
 66.249.66.144
-0 4 0 4575 0 0
+0 8 0 9153 0 0
 -
 8.41.221.61
 0 1 0 920 1 1633401519
@@ -163,11 +285,23 @@
 34.76.54.235
 0 1 1 2003 1 1633464548
 /
+<<<<<<< HEAD
 51.15.205.3
 0 1 0 958 1 1635408456
 /
+=======
+207.46.13.8
+0 1 1 328 0 0
+-
+>>>>>>> addedDeleted
 167.248.133.57
 0 6 2 7537 1 1633295786
+/
+207.46.13.105
+0 1 0 967 1 1634671723
+-
+104.155.94.45
+0 1 1 2003 1 1634654306
 /
 185.220.102.250
 0 1 0 1504 0 0
@@ -178,24 +312,58 @@
 35.205.214.108
 0 1 1 1597 1 1633090341
 /
+<<<<<<< HEAD
 66.249.66.156
 0 2 1 3032 0 0
 -
+=======
+66.249.66.216
+0 1 0 1143 0 0
+-
+66.249.66.156
+0 2 1 3032 0 0
+-
+23.251.138.150
+0 1 1 2003 1 1635028801
+/
+>>>>>>> addedDeleted
 2a02:a420:6d:a914:19b6:712b:994a:7151
 0 42 39 86481 4 1633447237
 /api/area
+83.162.30.190
+0 14 13 5553 1 1634576733
+/api/area
 66.249.66.159
+<<<<<<< HEAD
 0 7 1 7390 1 1633311446
+=======
+0 15 2 14475 1 1633311446
+>>>>>>> addedDeleted
 /
+35.196.169.241
+0 5 4 478 1 1634796091
+/api/area
 87.213.43.205
 0 2 1 2485 1 1633247784
 /
+35.196.169.242
+0 2 0 214 1 1634795849
+-
 8.41.221.59
 0 1 1 328 0 0
 -
 8.41.221.60
 0 1 0 967 0 0
 -
+205.169.39.51
+0 11 8 512163 1 1634652202
+/api/area
+66.249.66.218
+0 1 0 1143 0 0
+-
+84.241.198.101
+0 18 17 980 1 1635080549
+/api/area
 211.222.103.75
 0 1 0 1136 1 1633496245
 /
@@ -208,18 +376,44 @@
 154.17.87.160
 0 6 4 8973 1 1633329454
 /
+<<<<<<< HEAD
 2a01:4f8:c2c:6729::1
 0 2 1 2624 1 1635465442
 /
 66.249.66.146
 0 3 0 3432 0 0
+=======
+185.3.235.238
+0 2 0 3522 0 0
 -
+66.249.66.146
+0 4 0 4578 0 0
+>>>>>>> addedDeleted
+-
+167.99.127.252
+0 2 1 2624 1 1634964557
+/
 159.203.176.82
 0 2 0 3522 0 0
 -
+54.203.73.198
+0 7 3 8769 2 1635307891
+/
+69.30.231.158
+0 2 1 2998 1 1634816060
+/
+2a02:1810:c49a:a600:46:5363:b60:49b0
+0 53 52 13471 1 1635366312
+/api/area
 157.245.121.79
 0 1 0 1099 1 1633408554
 /
+85.209.89.2
+0 2 1 2624 1 1634895923
+/
+35.196.169.243
+0 2 0 220 1 1634795947
+-
 100.33.95.109
 0 1 0 1136 1 1633496250
 /
@@ -233,13 +427,20 @@
 0 1 1 1862 1 1633496254
 /
 66.249.66.95
-0 1 0 957 1 1633311445
+0 2 0 2103 1 1633311445
 /
 66.249.66.131
+<<<<<<< HEAD
 0 3 0 2895 0 0
+=======
+0 8 1 7082 0 0
+>>>>>>> addedDeleted
 -
 223.17.65.236
 0 1 1 1862 1 1633324064
+/
+34.213.224.8
+0 7 5 5465 1 1635002188
 /
 2a02:a420:6d:a914:5c00:e6c6:59b:43d1
 0 18 15 73957 1 1633514597
@@ -256,38 +457,74 @@
 84.17.59.86
 0 21 2 128929 1 1633381919
 /
+<<<<<<< HEAD
 2a02:a420:4e:be7f:81d7:470c:6d50:c3a3
 0 41 36 67625 4 1635618925
+=======
+188.10.49.19
+0 2 2 20 1 1634841459
+>>>>>>> addedDeleted
 /api/bankje/touch
 100.26.52.66
 0 4 4 12364 0 0
 -
 66.249.66.21
+<<<<<<< HEAD
 0 12 6 18485 4 1633497273
 /
 66.249.66.19
 0 5 2 8807 1 1633149355
+=======
+0 18 9 26513 4 1633497273
+/
+66.249.66.19
+0 9 4 14159 1 1633149355
+>>>>>>> addedDeleted
 /
 80.114.45.124
-0 38 36 729018 2 1633343309
-/api/area
+0 68 62 1483219 4 1634552499
+/api/bankje/touch
 2a02:a420:68:e584:c1e1:65b8:987:334e
 0 71 68 120244 2 1633341022
 /api/bankje/touch
+66.102.8.180
+0 3 2 3722 1 1635032074
+/api/area
+109.37.150.183
+0 26 24 17426 2 1635352690
+/api/area
 8.41.221.62
 0 1 1 1966 1 1633401519
 /
 107.160.0.174
 0 1 0 1682 0 0
 -
+<<<<<<< HEAD
 66.249.66.26
 0 1 0 1146 0 0
+=======
+31.161.157.51
+0 10 6 14006 1 1634730159
+/
+66.249.66.92
+0 1 1 506 0 0
+>>>>>>> addedDeleted
 -
 94.198.159.216
 0 2 2 3177 1 1633229034
 /
+66.249.66.213
+0 1 1 328 0 0
+-
+2a0e:fdc1:1104:ae00:836:af82:e469:ecd9
+0 129 123 3646 1 1635281263
+/api/area
 87.195.54.29
+<<<<<<< HEAD
 0 4282 4000 30019818 30 1635638779
+=======
+0 2579 2352 20489346 27 1635372391
+>>>>>>> addedDeleted
 /api/area
 2a00:d78:0:710:94:198:159:216
 0 2 2 3177 1 1633229037
@@ -296,7 +533,13 @@
 0 1 0 964 0 0
 -
 66.249.66.22
-0 4 2 6064 0 0
+0 7 4 9602 0 0
+-
+93.34.34.189
+0 25 19 21454 2 1634721000
+/api/area
+64.4.160.22
+0 2 0 3522 0 0
 -
 64.246.161.190
 0 2 2 1921 1 1635392518
@@ -305,8 +548,17 @@
 0 3 1 2252 1 1635450805
 /
 66.249.66.18
-0 5 2 8412 0 0
+0 12 6 18014 0 0
 -
+188.206.111.255
+0 4 4 431 1 1634826638
+/api/bankje/touch
+43.129.212.158
+0 4 0 7044 0 0
+-
+2a0e:fdc1:1104:ae00:2172:445d:3072:398
+0 90 87 1881335 1 1635350592
+/api/area
 34.78.69.141
 0 1 1 2003 1 1633277630
 /
@@ -314,47 +566,136 @@
 0 1 0 1504 0 0
 -
 66.249.66.23
-0 6 4 8558 3 1633509992
+0 13 8 16914 3 1633509992
 /
 66.249.66.20
+<<<<<<< HEAD
 0 3 1 5558 0 0
+=======
+0 8 3 13792 0 0
+>>>>>>> addedDeleted
 -
+66.102.8.182
+0 1 1 603 1 1635032030
+/api/bankje/touch
 2001:1c05:109:7700:58da:25c3:f69f:79d9
 0 3 2 7803 1 1633047100
 /api/bankje/touch
+95.91.111.85
+0 5 3 5458 1 1635313042
+/
 185.220.100.246
 0 1 0 1682 0 0
+-
+161.97.178.213
+0 1 0 2590 0 0
+-
+66.249.66.64
+0 1 0 1146 0 0
 -
 94.109.212.156
 0 58 57 7803 1 1633177163
 /api/area
-66.249.66.148
-0 4 0 4575 0 0
+157.55.39.13
+0 2 1 404154 0 0
 -
+66.249.66.148
+0 11 0 12585 0 0
+-
+<<<<<<< HEAD
 66.249.66.202
 0 1 1 328 0 0
 -
-66.249.66.129
-0 3 0 2891 1 1633497272
+=======
+34.140.222.13
+0 1 1 2003 1 1634841378
 /
+>>>>>>> addedDeleted
+66.249.66.129
+0 6 0 5789 1 1633497272
+/
+185.231.69.98
+0 1 0 957 1 1635142421
+/
+2a01:4f8:192:80c4::2
+0 5 3 5458 1 1634708107
+/
+<<<<<<< HEAD
 35.241.211.138
 0 1 1 2003 1 1635589473
 /
 207.46.13.19
 0 1 0 2627 1 1635387776
 -
+=======
+162.214.229.147
+0 2 0 3522 0 0
+-
+66.249.66.212
+0 1 0 2526 0 0
+-
+205.169.39.146
+0 14 10 874981 1 1634652195
+/api/area
+>>>>>>> addedDeleted
 85.149.35.33
 0 23 15 35445 2 1633437248
 /api/area
 # End Of Table - sites (monthly)
 # -sites- (daily)
+<<<<<<< HEAD
 87.195.54.29
 0 149 149 0 1 1635638779
 /api/area
+=======
+66.249.66.159
+0 2 0 1931 0 0
+-
+66.249.66.146
+0 1 0 1146 0 0
+-
+54.203.73.198
+0 1 0 957 1 1635307891
+/
+2a02:1810:c49a:a600:46:5363:b60:49b0
+0 53 52 13471 1 1635366312
+/api/area
+66.249.66.21
+0 1 1 328 0 0
+-
+109.37.150.183
+0 26 24 17426 2 1635352690
+/api/area
+87.195.54.29
+0 40 22 656333 1 1635372391
+/api/area
+43.129.212.158
+0 4 0 7044 0 0
+-
+2a0e:fdc1:1104:ae00:2172:445d:3072:398
+0 90 87 1881335 1 1635350592
+/api/area
+66.249.66.23
+0 1 0 2348 0 0
+-
+66.249.66.20
+0 2 1 2854 0 0
+-
+95.91.111.85
+0 5 3 5458 1 1635313042
+/
+66.249.66.148
+0 1 0 1143 0 0
+-
+>>>>>>> addedDeleted
 # End Of Table - sites (daily)
 # -referrers- 
+http://evenuitrusten.nl/images/app_icon_150.png
+0 1
 http://localhost/
-0 61
+0 182
+http://evenuitrusten.nl/robots.txt
+0 1
 http://www.evenuitrusten.nl
 0 1
 https://evenuitrusten.nl/
@@ -364,6 +705,7 @@ https://www.evenuitrusten.nl
 https://www.google.com/
 0 1
 - (Direct Request)
+<<<<<<< HEAD
 0 644
 http://www.evenuitrusten.nl/
 0 156
@@ -371,28 +713,54 @@ https://evenuitrusten.nl
 0 1
 http://evenuitrusten.nl/blabla
 0 1
+=======
+0 730
+http://www.evenuitrusten.nl/
+0 92
+https://evenuitrusten.nl
+0 1
+>>>>>>> addedDeleted
 http://evenuitrusten.nl
 0 2
 http://evenuitrusten.nl/
 0 1
 https://www.evenuitrusten.nl/
+<<<<<<< HEAD
 0 3877
+=======
+0 2522
+>>>>>>> addedDeleted
 http://evenuitrusten.nl/wp-login.php
-0 2
+0 7
 https://www.evenuitrusten.nl/admin
 0 4
+http://www.google.com.hk
+0 2
 # End Of Table - referrers
 # -agents- 
+Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36
+0 3
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36
+0 2
 Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0
 0 15
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0
+0 7
 MobileSafari/604.1 CFNetwork/1240.0.4 Darwin/20.6.0
 0 96
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36
+0 11
+Mozilla/5.0 (Linux; Android 9; GCE x86 phone Build/PGR1.190916.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Ch
+0 9
 Apache-HttpClient/5.1 (Java/11.0.11)
 0 2
 Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E14
 0 608
+Mozilla/5.0 (Android 8.1.0; Mobile; rv:93.0) Gecko/93.0 Firefox/93.0
+0 219
 Mozilla/5.0 (compatible; NetcraftSurveyAgent/1.0; +info@netcraft.com)
 0 1
+<<<<<<< HEAD
 Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4590.2 Mobile Safari/537.36 C
 0 58
 Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0
@@ -403,6 +771,20 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
 0 5
 Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 0 62
+=======
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MTC20F; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/93.0.
+0 4
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0
+0 132
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.71 Safari/537.36
+0 9
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36
+0 2
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+0 6
+Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+0 127
+>>>>>>> addedDeleted
 Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)
 0 6
 Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
@@ -410,7 +792,11 @@ Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
 Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36
 0 4
 MobileSafari/8612.1.27.0.31 CFNetwork/1312 Darwin/21.0.0
+<<<<<<< HEAD
 0 2
+=======
+0 1
+>>>>>>> addedDeleted
 Go-http-client/1.1
 0 4
 Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/22.0 Mobile/16B92 Safar
@@ -421,12 +807,22 @@ Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KH
 0 2
 Google Chrome Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/53
 0 2
+Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0
+0 3
+Mozilla/5.0 (Linux; Android 10; motorola one action Build/QSBS30.62-29-11-10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Vers
+0 53
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebook
+<<<<<<< HEAD
 0 88
 Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280
 0 111
 Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Mobile Safari/537.3
 0 522
+=======
+0 117
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+0 7
+>>>>>>> addedDeleted
 Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E14
 0 1140
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36
@@ -439,12 +835,19 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
 0 75
 Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Mobile S
 0 1
+Mozilla/5.0 (Linux; Android 8.0.0; SM-G935F Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0.4
+0 14
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
 0 21
+Mozilla/5.0 (Linux; Android 11; SM-G398FN Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrom
+0 26
 Mozilla/5.0 (Linux; Android 11; SM-A226B Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome
 0 58
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/76.0.3809.100 Safari/537.36
+0 2
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36
 0 4
+<<<<<<< HEAD
 Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:59.0) Gecko/20100101 Firefox/59.0
 0 2
 Mozilla/5.0 (iPhone; CPU iPhone OS 15_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 
@@ -453,18 +856,28 @@ Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)
 0 5
 Mozilla/5.0 (compatible; DotBot/1.2; +https://opensiteexplorer.org/dotbot; help@moz.com)
 0 3
+=======
+Mozilla/5.0 (iPhone; CPU iPhone OS 15_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 
+0 57
+Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)
+0 15
+>>>>>>> addedDeleted
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 0 1
 Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:62.0) Gecko/20100101 Firefox/62.0
-0 4
+0 15
 Mozilla/5.0 (Linux; Android 5.1.1; SM-J120FN Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/94.0
 0 3
 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36
 0 2
 Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Mo
 0 818
+Mozilla/5.0 (Linux; Android 11; CPH2005 Build/RKQ1.200903.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/
+0 18
 Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mo
 0 167
+Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+0 2
 Mozilla/5.0 Firefox/33.0
 0 2
 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36

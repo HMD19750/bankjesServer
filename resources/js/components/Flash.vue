@@ -10,8 +10,6 @@
 export default {
   name: "Flash",
 
-
-
   data() {
     return {
       elementVisible: true,

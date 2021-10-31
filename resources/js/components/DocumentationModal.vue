@@ -122,7 +122,6 @@ export default defineComponent({
 
   methods: {
     closeModal() {
-      console.log("Menubar.vue: Emitted closeDocumentation-");
       eventHub.emit("closeDocumentation");
     },
   },

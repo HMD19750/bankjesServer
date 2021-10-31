@@ -56,3 +56,10 @@ Project op nieuwe branch "withVue" gezet van "bankjesServer"
 - Alles weer gemerged naar master branch
 - Weer naar guthub gepushed
 
+## 28-10-2021
+- Mode toegevoegd die alleen verwijderde en teogevoegde bankjes laat zie
+- Aparte route (/api/ara/addedDeleted) en controllermethode (addedDeleted()) toegevoegd
+- In addedDeleted-mode worden + en - buttons onzichtbaar
+
+## 30-10-2021
+- via geheime button sequence komt men in modus die alleen added en deleted bankjes laat zien. Logica zit in menuButton.vuegit status
